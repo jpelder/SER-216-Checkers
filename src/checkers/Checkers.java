@@ -8,7 +8,7 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
 
     Graphics g;
 
-    JTextArea msg=new JTextArea("Start a new game... Blue is to move first...");
+    JTextArea msg=new JTextArea("Start a new game... Yellow is to move first...");
     ImageIcon redN=new ImageIcon(new ImageIcon(getClass().getResource("red_normal.jpg")).getImage());//red_normal.jpg
     ImageIcon yellowN=new ImageIcon(new ImageIcon(getClass().getResource("yellow_normal.jpg")).getImage());//yellow_normal.jpg
     ImageIcon redK=new ImageIcon(new ImageIcon(getClass().getResource("red_king.jpg")).getImage());//red_king.jpg
@@ -178,25 +178,25 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
         this.add(msg);
 
         rp.setBounds(10, 440, 50, 50);
-        rp.setIcon(redN);
+        rp.setIcon(yellowN);			// changed from redN to yellowN
         this.add(rp);
         rpt.setBounds(60, 450, 60, 20);
         this.add(rpt);
 
         bp.setBounds(110, 440, 50, 50);
-        bp.setIcon(yellowN);
+        bp.setIcon(redN);			// changed from yellowN to redN
         this.add(bp);
         bpt.setBounds(160, 450, 90, 20);
         this.add(bpt);
 
         rk.setBounds(250, 440, 50, 50);
-        rk.setIcon(redK);
+        rk.setIcon(yellowK);			// changed from redK to yellowK
         this.add(rk);
         rkt.setBounds(305, 450, 60, 20);
         this.add(rkt);
 
         bk.setBounds(365, 440, 50, 50);
-        bk.setIcon(yellowK);
+        bk.setIcon(redK);			// changed from yellowK to redK
         this.add(bk);
         bkt.setBounds(420, 450, 100, 20);
         this.add(bkt);
@@ -548,17 +548,17 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
             msg.setText("Red to move");
         }
         else{
-            msg.setText("Blue to move");
+            msg.setText("Yellow to move");
         }
 
         if (loser == redNormal && won==0){
-            msg.setText("Blue Wins!");
+            msg.setText("Yellow Wins!");
             try {
                 Thread.sleep(150);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            new GameWin("Blue",this.getLocationOnScreen());
+            new GameWin("Yellow",this.getLocationOnScreen());
             won=1;
             undoCount=0;
             newGame();
