@@ -8,14 +8,14 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
 
     Graphics g;
 
-    JTextArea msg=new JTextArea("Start a new game... Yellow is to move first...");
-    ImageIcon redN=new ImageIcon(new ImageIcon(getClass().getResource("red_normal.jpg")).getImage());//red_normal.jpg
-    ImageIcon yellowN=new ImageIcon(new ImageIcon(getClass().getResource("yellow_normal.jpg")).getImage());//yellow_normal.jpg
-    ImageIcon redK=new ImageIcon(new ImageIcon(getClass().getResource("red_king.jpg")).getImage());//red_king.jpg
-    ImageIcon yellowK=new ImageIcon(new ImageIcon(getClass().getResource("yellow_king.jpg")).getImage());//yellow_king.jpg
-    ImageIcon hlp=new ImageIcon(new ImageIcon(getClass().getResource("help.jpg")).getImage());//help.jpg
-    ImageIcon snp=new ImageIcon(new ImageIcon(getClass().getResource("sound.jpg")).getImage());//sound.jpg
-    ImageIcon mup=new ImageIcon(new ImageIcon(getClass().getResource("mute.jpg")).getImage());//mute.jpg
+    JTextArea msg=new JTextArea("Select Mode then Start New Game!");
+    ImageIcon redN=new ImageIcon(new ImageIcon(getClass().getResource("../images/red_normal.jpg")).getImage());//red_normal.jpg
+    ImageIcon yellowN=new ImageIcon(new ImageIcon(getClass().getResource("../images/yellow_normal.jpg")).getImage());//yellow_normal.jpg
+    ImageIcon redK=new ImageIcon(new ImageIcon(getClass().getResource("../images/red_king.jpg")).getImage());//red_king.jpg
+    ImageIcon yellowK=new ImageIcon(new ImageIcon(getClass().getResource("../images/yellow_king.jpg")).getImage());//yellow_king.jpg
+    ImageIcon hlp=new ImageIcon(new ImageIcon(getClass().getResource("../images/help.jpg")).getImage());//help.jpg
+    ImageIcon snp=new ImageIcon(new ImageIcon(getClass().getResource("../images/sound.jpg")).getImage());//sound.jpg
+    ImageIcon mup=new ImageIcon(new ImageIcon(getClass().getResource("../images/mute.jpg")).getImage());//mute.jpg
 
     JButton nwB=new JButton("New Game");
     JButton unB=new JButton("Undo");
@@ -545,10 +545,10 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
 
     private void showStatus() {       //prints msgs to the statuss bar
         if (this.toMove == redNormal){
-            msg.setText("Red to move");
+            msg.setText("Red move");
         }
         else{
-            msg.setText("Yellow to move");
+            msg.setText("Yellow move");
         }
 
         if (loser == redNormal && won==0){
