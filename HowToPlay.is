@@ -1,0 +1,17 @@
+CHECKERS RULES
+
+TURNS
+Yellow always takes the first move and a move after Red.
+Red takes moves after Yellow.
+
+MOVING
+You MUST capture if you are able to!
+Pieces can only move diagonally.
+Normal pieces can only move "forwards".
+
+CAPTURING
+If an opposing piece is one tile away from your piece, and has an empty tile behind it, you may jump over that piece to destroy it.
+
+KINGS
+Regular pieces are Kinged by arriving at the most distant row.
+Kings can move backwards as well as forwards.
