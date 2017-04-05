@@ -24,7 +24,9 @@ public class PlaySound extends Thread {
 	}
 
 	public void run() {
-        if(Checkers.silent) return;
+        if(Checkers.silent){
+        	return;
+        }
         
         File soundFile = new File(filename);
 		if (!soundFile.exists()) {
@@ -35,10 +37,12 @@ public class PlaySound extends Thread {
 		AudioInputStream audioInputStream;
 		try {
 			audioInputStream = AudioSystem.getAudioInputStream(soundFile);
-		} catch (UnsupportedAudioFileException e1) {
+		} 
+		catch (UnsupportedAudioFileException e1) {
 			e1.printStackTrace();
 			return;
-		} catch (IOException e1) {
+		} 
+		catch (IOException e1) {
 			e1.printStackTrace();
 			return;
 		}
@@ -50,17 +54,18 @@ public class PlaySound extends Thread {
 		try {
 			auline = (SourceDataLine) AudioSystem.getLine(info);
 			auline.open(format);
-		} catch (LineUnavailableException e) {
+		} 
+		catch (LineUnavailableException e) {
 			e.printStackTrace();
 			return;
-		} catch (Exception e) {
+		} 
+		catch (Exception e) {
 			e.printStackTrace();
 			return;
 		}
 
 		if (auline.isControlSupported(FloatControl.Type.PAN)) {
-			FloatControl pan = (FloatControl) auline
-					.getControl(FloatControl.Type.PAN);
+			FloatControl pan = (FloatControl) auline.getControl(FloatControl.Type.PAN);
 		}
 
 		auline.start();
@@ -70,12 +75,15 @@ public class PlaySound extends Thread {
 		try {
 			while (nBytesRead != -1) {
 				nBytesRead = audioInputStream.read(abData, 0, abData.length);
-				if (nBytesRead >= 0)
+				if (nBytesRead >= 0){
 					auline.write(abData, 0, nBytesRead);
+				}
 			}
-		} catch (IOException e) {
+		} 
+		catch (IOException e) {
 			e.printStackTrace();
-        } finally {
+        }
+		finally {
 			auline.drain();
 			auline.close();
 		}

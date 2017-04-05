@@ -6,16 +6,16 @@ import java.awt.event.ActionEvent;
 import java.awt.*;
 
 public class CheckerFrame extends JFrame implements ActionListener{
-    JButton stB=new JButton("Start Game");
-    JPanel gmP=new StartPanel();
+    JButton stB = new JButton("Start Game");
+    JPanel gmP = new StartPanel();
   
     CheckerFrame(){
         try {
             UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
-            SwingUtilities.updateComponentTreeUI(this); //changing the appearence of the frame
+            SwingUtilities.updateComponentTreeUI(this); //changing the appearance of the frame
         }
         catch (Exception e) {
-           //no need to handle exception as it only affect the appearence
+           //no need to handle exception as it only affect the appearance
         }
         setupGUI();
         new PlaySound("sounds/Start.wav").start();
@@ -23,23 +23,23 @@ public class CheckerFrame extends JFrame implements ActionListener{
 
     private void setupGUI() {
         setLayout(null);
-        gmP.setBounds(0,0,508,401);//400,401
+        gmP.setBounds(0, 0, 508, 401);//400,401
         //gmP.imageUpdate(ne, WIDTH, WIDTH, WIDTH, WIDTH, WIDTH
         add(gmP);
         stB.setHorizontalAlignment(SwingConstants.LEADING);
         stB.setIcon(new ImageIcon(getClass().getResource("../images/checkersIcon.jpg")));
         stB.setBackground(Color.LIGHT_GRAY);
         stB.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        stB.setBounds(130,415,240,60);
-        stB.setFont(new Font("Times new roman",Font.BOLD,20));
+        stB.setBounds(130, 415, 240, 60);
+        stB.setFont(new Font("Times new roman",Font.BOLD, 20));
         stB.addActionListener(this);
         stB.setFocusPainted(false);
         add(stB);
 
         this.setIconImage(new ImageIcon(getClass().getResource("../images/icon.jpg")).getImage());
 
-        setSize(508,520);
-        setLocation((int)getToolkit().getScreenSize().getWidth()/2-254,(int)getToolkit().getScreenSize().getHeight()/2-310);
+        setSize(508, 520);
+        setLocation((int)getToolkit().getScreenSize().getWidth() / 2 - 254, (int)getToolkit().getScreenSize().getHeight() / 2 - 310);
         setResizable(false);
         setVisible(true);
         setTitle("Play Checkers");
@@ -51,8 +51,8 @@ public class CheckerFrame extends JFrame implements ActionListener{
         if(e.getActionCommand().equalsIgnoreCase("Start Game")){
             ((JButton)e.getSource()).setText("New Game");
             new PlaySound("sounds/button.wav").start();
-            gmP=new Checkers();
-            gmP.setBounds(0,0,508,401);
+            gmP = new Checkers();
+            gmP.setBounds(0, 0, 508, 401);
             this.setContentPane(gmP);
         }
     }
