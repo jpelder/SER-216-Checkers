@@ -10,3 +10,5 @@ CHANGES MADE BEFORE INITIAL PUSH TO GITHUB: Some of the image file names had to 
 4/3/17: Moved Folders around and deleted duplicate folders/files. Changed references to sound files to make them work. Added a file (HowToPlay.is) to populate the Help Box.
 
 4/5/17: Cleaned up the code - adding/moving brackets, spacing,  etc. Added our group names to the credits in the beginning, and some button tool tips.
+
+4/6/17: Cleaned up code - spacing. 

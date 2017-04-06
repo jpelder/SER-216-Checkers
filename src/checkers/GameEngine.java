@@ -34,12 +34,12 @@ Weight of checkers
 
         for(int i = 0; i < 8; i++){
             for(int j = 0; j < 8; j++){
-	            if (board[i][j] == Checkers.redNormal){
+	            if(board[i][j] == Checkers.redNormal){
                       score -= normal;
                       score -= pos * j * j;
                 }
 
-                else if (board[i][j] == Checkers.redKing){
+                else if(board[i][j] == Checkers.redKing){
                     score -= king;
                     if(i == 0 || i == 7){
                         score += edge;
@@ -49,12 +49,12 @@ Weight of checkers
                     }
                 }
 
-                else if (board[i][j] == Checkers.yellowNormal){
+                else if(board[i][j] == Checkers.yellowNormal){
                       score += normal;
                       score += pos * (7 - j) * (7 - j);
                 }
 
-                else if (board[i][j] == Checkers.yellowKing){
+                else if(board[i][j] == Checkers.yellowKing){
                     score += king;
                     if(i == 0 || i == 7){
                         score -= edge;
@@ -90,12 +90,12 @@ Weight of checkers
 
         //assumes that depth is never equal to maxDepth to begin with since chosenMove is not set here
 
-        if (depth == maxDepth){
+        if(depth == maxDepth){
             bestScore = eval(board);
             counter[0]++;
         }
 
-        else {
+        else{
             movesList = CheckerMove.generateMoves(board,turn);
             bestScore = getTurn(turn);
             switch(movesList.size()){
@@ -115,7 +115,7 @@ Weight of checkers
             	}
             }
 
-            for (int i = 0; i < movesList.size() ;i++){
+            for(int i = 0; i < movesList.size() ;i++){
                 newBoard = copyBoard(board);                                     //board need not be touched
                 CheckerMove.moveComputer(newBoard, (int[])movesList.elementAt(i)); /*returns new_board (changing start and end coodinates
                                                                                      and applying the move)*/
@@ -125,7 +125,7 @@ Weight of checkers
                 if(turn == Checkers.yellowNormal && score > bestScore) {
                     bestMove = (int[])movesList.elementAt(i);
                     bestScore = score;
-                    if (bestScore > yellowBest){
+                    if(bestScore > yellowBest){
                         if(bestScore >= redBest){
                             break;  /*  alpha_beta cutoff  */
                         }
@@ -138,8 +138,8 @@ Weight of checkers
                 else if(turn == Checkers.redNormal && score < bestScore) {
                     bestMove = (int[])movesList.elementAt(i);
                     bestScore = score;
-                    if (bestScore < redBest){
-                        if (bestScore <= yellowBest)
+                    if(bestScore < redBest){
+                        if(bestScore <= yellowBest)
                             break;  /*  alpha_beta cutoff  */
                         else{
                             redBest = bestScore;  //the_score
@@ -156,7 +156,7 @@ Weight of checkers
       static int[][] copyBoard(int[][] board){ //uses to copy a double array
     	  int[][] copy = new int[8][8];
 
-    	  for (int i = 0; i < 8; i++){
+    	  for(int i = 0; i < 8; i++){
     		  System.arraycopy(board[i], 0, copy[i], 0, 8);
     	  }
     	  return copy;

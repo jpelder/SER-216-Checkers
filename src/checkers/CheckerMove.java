@@ -34,19 +34,19 @@ public class CheckerMove {
             for(int i = 0; i < 8; i++){
                     for(int j = 0; j < 8; j++){
                         if((float)(i + j) / 2 != (i + j) / 2 ){
-                                if (toMove == Checkers.redNormal && (board[i][j] == Checkers.redNormal || board[i][j] == Checkers.redKing)){
-                                        if (canWalk(board, i, j)){
+                                if(toMove == Checkers.redNormal && (board[i][j] == Checkers.redNormal || board[i][j] == Checkers.redKing)){
+                                        if(canWalk(board, i, j)){
                                         	return false;
                                         }
-                                        else if (canCapture(board, i, j)){
+                                        else if(canCapture(board, i, j)){
                                         	return false;
                                         }
                                 }
                                 else if(toMove == Checkers.yellowNormal && (board[i][j] == Checkers.yellowNormal || board[i][j] == Checkers.yellowKing)){
-                                        if (canWalk(board, i, j)){
+                                        if(canWalk(board, i, j)){
                                         	return false;
                                         }
-                                        else if (canCapture(board, i, j)){
+                                        else if(canCapture(board, i, j)){
                                         	return false;
                                         }
                                 }
@@ -76,19 +76,19 @@ public class CheckerMove {
                                 board[srtI][srtJ] = Checkers.empty;
                         }
 
-                        if (result == incompleteMove){
+                        if(result == incompleteMove){
                                 // if there are no further captures
-                                if (!(canCapture(board, endI, endJ))){
+                                if(!(canCapture(board, endI, endJ))){
                                         result = legalMove;
                                 }
                         }
 
                         // check for new king
-                        if ( board[endI][endJ] == Checkers.redNormal && endJ == 7){
+                        if(board[endI][endJ] == Checkers.redNormal && endJ == 7){
                                board[endI][endJ] = Checkers.redKing;
                         }
 
-                        else if ( board[endI][endJ] == Checkers.yellowNormal && endJ == 0){
+                        else if(board[endI][endJ] == Checkers.yellowNormal && endJ == 0){
                                 board[endI][endJ] = Checkers.yellowKing;
                         }
 
@@ -141,12 +141,12 @@ public class CheckerMove {
 
                 switch (piece){
                     case Checkers.redNormal:
-                        if (endJ - srtJ == 1){
+                        if(endJ - srtJ == 1){
                         	return legalMove;       //Normal checkers only can go forward
                         }
                         break;
                     case Checkers.yellowNormal:
-                        if (endJ - srtJ == -1){
+                        if(endJ - srtJ == -1){
                         	return legalMove;
                         }
                         break;
@@ -179,12 +179,12 @@ public class CheckerMove {
 
 				switch (piece){  //if u are going to cut a piece the move must have the length two
                 case Checkers.redNormal:
-					if (endJ - srtJ != 2){
+					if(endJ - srtJ != 2){
 						return illegalMove;
 					}
 					break;
 				case Checkers.yellowNormal:
-                    if (endJ - srtJ != -2){
+                    if(endJ - srtJ != -2){
 						return illegalMove;
                     }
 					break;
@@ -201,10 +201,10 @@ public class CheckerMove {
         }
 
         static int isWalkLegal(int[][] board,int srtI,int srtJ,int endI,int endJ){
-			if(! (inRange(srtI,srtJ) && inRange(endI,endJ) ) ){
+			if(!(inRange(srtI,srtJ) && inRange(endI,endJ) ) ){
 				return illegalMove;
 			}
-            if (board[endI][endJ] != Checkers.empty){
+            if(board[endI][endJ] != Checkers.empty){
                 return illegalMove;
             }
 
@@ -308,7 +308,7 @@ public class CheckerMove {
                         			return true;
                         		}
                         	}
-                                if (j - 2 > -1){
+                                if(j - 2 > -1){
                                 	if((board[i + 1][j - 1] == Checkers.redNormal || board[i + 1][j - 1] == Checkers.redKing ) && board[i + 2][j - 2] == Checkers.empty){
                                         return true;
                                 	}
@@ -320,7 +320,7 @@ public class CheckerMove {
                         			return true;
                         		}
                         	}
-                                if (j - 2 > -1){
+                                if(j - 2 > -1){
                                 	if((board[i - 1][j - 1] == Checkers.redNormal  || board[i - 1][j - 1] == Checkers.redKing ) && board[i - 2][j - 2] == Checkers.empty){
                                         return true;
                                 	}
@@ -395,9 +395,9 @@ public class CheckerMove {
     		 if(turn == colour(board[i][j])) {
     			 if(canCapture(board,turn)) {
     				 for(int k = -2; k <= 2; k += 4)  //check all directions
-    					 for (int l=-2; l<=2; l+=4){
+    					 for(int l=-2; l<=2; l+=4){
                             move=isMoveLegal(board, i, j, i + k, j + l, turn);
-                            if (move == incompleteMove){
+                            if(move == incompleteMove){
                                 int[] int_array = new int[4]; //stores old coorinates and new coordinates
                                 int_array[0] = i; int_array[1] = j;
                                 int_array[2] = i + k; int_array[3] = j + l;
@@ -412,12 +412,12 @@ public class CheckerMove {
                             }
     					 } 
          }
-    			 else {
+    			 else{
     				 for(int k = -1; k <= 2; k += 2)
     					 for(int l = -1; l <= 2; l += 2){
     						 if(inRange(i + k, j + l)){
     							 move= isWalkLegal(board, i, j, i + k, j + l);
-    							 if (move == legalMove){
+    							 if(move == legalMove){
     								 int[] int_array = new int[4];
     								 int_array[0]=i; int_array[1]=j;
     								 int_array[2]=i + k; int_array[3]=j + l;
@@ -430,7 +430,6 @@ public class CheckerMove {
     			 }
     		 }
      return moves_list;
-
     }
 
 //"apply move" in the Minimax.  simply moves the board give moves
@@ -455,7 +454,7 @@ public class CheckerMove {
     private static void forceCaptures(int[][] board, int[] move, Vector moves_list,int inc){
     	int newx = move[2], newy = move[3];
 
-    	while (newx>7 || newy>7){
+    	while(newx>7 || newy>7){
     		newx /= 10;
     		newy /= 10;
     	}//end while
@@ -464,7 +463,7 @@ public class CheckerMove {
     			if(inRange(newx+i, newy + j)) {
     				int[][] tempPosition = GameEngine.copyBoard(board);
     				int moveResult = ApplyMove(tempPosition, newx, newy, newx + i, newy + j);
-    				if (moveResult == legalMove){// an ordinary move without additionals
+    				if(moveResult == legalMove){// an ordinary move without additionals
     					int[] new_move = new int[4];
     					new_move[0] = move[0];
     					new_move[1] = move[1];
@@ -472,7 +471,7 @@ public class CheckerMove {
     					new_move[3] = move[3] + (newy + j) * inc;
     					moves_list.addElement(new_move);
     				} 
-    				else if (moveResult == incompleteMove){ //There are multiple captures
+    				else if(moveResult == incompleteMove){ //There are multiple captures
     					int[] new_move = new int[4];
     					new_move[0] = move[0];
     					new_move[1] = move[1];

@@ -8,17 +8,17 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
 
     Graphics g;
 
-    JTextArea msg=new JTextArea("Select Mode then Start New Game!");
-    ImageIcon redN=new ImageIcon(new ImageIcon(getClass().getResource("../images/red_normal.jpg")).getImage());//red_normal.jpg
-    ImageIcon yellowN=new ImageIcon(new ImageIcon(getClass().getResource("../images/yellow_normal.jpg")).getImage());//yellow_normal.jpg
-    ImageIcon redK=new ImageIcon(new ImageIcon(getClass().getResource("../images/red_king.jpg")).getImage());//red_king.jpg
-    ImageIcon yellowK=new ImageIcon(new ImageIcon(getClass().getResource("../images/yellow_king.jpg")).getImage());//yellow_king.jpg
-    ImageIcon hlp=new ImageIcon(new ImageIcon(getClass().getResource("../images/help.jpg")).getImage());//help.jpg
-    ImageIcon snp=new ImageIcon(new ImageIcon(getClass().getResource("../images/sound.jpg")).getImage());//sound.jpg
-    ImageIcon mup=new ImageIcon(new ImageIcon(getClass().getResource("../images/mute.jpg")).getImage());//mute.jpg
+    JTextArea msg = new JTextArea("Select Mode then Start New Game!");
+    ImageIcon redN = new ImageIcon(new ImageIcon(getClass().getResource("../images/red_normal.jpg")).getImage());//red_normal.jpg
+    ImageIcon yellowN = new ImageIcon(new ImageIcon(getClass().getResource("../images/yellow_normal.jpg")).getImage());//yellow_normal.jpg
+    ImageIcon redK = new ImageIcon(new ImageIcon(getClass().getResource("../images/red_king.jpg")).getImage());//red_king.jpg
+    ImageIcon yellowK = new ImageIcon(new ImageIcon(getClass().getResource("../images/yellow_king.jpg")).getImage());//yellow_king.jpg
+    ImageIcon hlp = new ImageIcon(new ImageIcon(getClass().getResource("../images/help.jpg")).getImage());//help.jpg
+    ImageIcon snp = new ImageIcon(new ImageIcon(getClass().getResource("../images/sound.jpg")).getImage());//sound.jpg
+    ImageIcon mup = new ImageIcon(new ImageIcon(getClass().getResource("../images/mute.jpg")).getImage());//mute.jpg
 
-    JButton nwB=new JButton("New Game");
-    JButton unB=new JButton("Undo");
+    JButton nwB = new JButton("New Game");
+    JButton unB = new JButton("Undo");
     JButton hlpB=new JButton(hlp);
     JButton snB=new JButton(snp);
 
@@ -30,21 +30,21 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
     JRadioButton c1 = new JRadioButton("Red", false);
     JRadioButton c2 = new JRadioButton("Yellow", true);
 
-    Help hp=new Help();
+    Help hp = new Help();
 
-    JLabel mode=new JLabel("Mode");
-    JLabel col=new JLabel("Colour");
-    JLabel diff=new JLabel("Difficulty Level");
-    JLabel rp=new JLabel();
-    JLabel rpt=new JLabel("Your Piece");
-    JLabel bpt=new JLabel("Opponent's Piece");
-    JLabel bp=new JLabel();
-    JLabel rk=new JLabel();
-    JLabel rkt=new JLabel("Your King");
-    JLabel bkt=new JLabel("Opponent's King");
-    JLabel bk=new JLabel();
+    JLabel mode = new JLabel("Mode");
+    JLabel col = new JLabel("Colour");
+    JLabel diff = new JLabel("Difficulty Level");
+    JLabel rp = new JLabel();
+    JLabel rpt = new JLabel("Your Piece");
+    JLabel bpt = new JLabel("Opponent's Piece");
+    JLabel bp = new JLabel();
+    JLabel rk = new JLabel();
+    JLabel rkt = new JLabel("Your King");
+    JLabel bkt = new JLabel("Opponent's King");
+    JLabel bk = new JLabel();
 
-    JComboBox level=new JComboBox();
+    JComboBox level = new JComboBox();
 
     String selectedColor;
     int selectedMode;
@@ -61,25 +61,25 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
 
     int[][] board = new int[8][8];
 
-    int [][] preBoard1= new int[8][8];                 //for undo
+    int [][] preBoard1 = new int[8][8];  //for undo
     int preToMove1;
-    int [][] preBoard2= new int[8][8];
+    int [][] preBoard2 = new int[8][8];
     int preToMove2;
-    int [][] preBoard3= new int[8][8];
+    int [][] preBoard3 = new int[8][8];
     int preToMove3;
 
-    int startX,startY,endX,endY;
-    boolean incomplete=false;
+    int startX, startY, endX, endY;
+    boolean incomplete = false;
     boolean highlight=false;
 
-    int toMove =redNormal;
+    int toMove = redNormal;
 	int loser = empty;
 
-    static boolean silent=false;
+    static boolean silent = false;
 
     int undoCount;
 
-    int won=0;
+    int won = 0;
 
     Point winPoint;
 
@@ -99,18 +99,18 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
         hlpB.setFocusPainted(false);
         snB.setFocusPainted(false);
 
-        diff.setFont(new Font("SansSerif",Font.PLAIN,11));
-        col.setFont(new Font("SansSerif",Font.PLAIN,11));
-        mode.setFont(new Font("SansSerif",Font.PLAIN,11));
-        c1.setFont(new Font("SansSerif",Font.PLAIN,11));
-        c2.setFont(new Font("SansSerif",Font.PLAIN,11));
-        p1.setFont(new Font("SansSerif",Font.PLAIN,11));
-        p2.setFont(new Font("SansSerif",Font.PLAIN,11));
-        nwB.setFont(new Font("SansSerif",Font.BOLD,11));
-        unB.setFont(new Font("SansSerif",Font.BOLD,11));
-        hlpB.setFont(new Font("SansSerif",Font.PLAIN,11));
-        snB.setFont(new Font("SansSerif",Font.PLAIN,11));
-        msg.setFont(new Font("SansSerif",Font.PLAIN,11)); 
+        diff.setFont(new Font("SansSerif", Font.PLAIN, 11));
+        col.setFont(new Font("SansSerif", Font.PLAIN, 11));
+        mode.setFont(new Font("SansSerif", Font.PLAIN, 11));
+        c1.setFont(new Font("SansSerif", Font.PLAIN, 11));
+        c2.setFont(new Font("SansSerif", Font.PLAIN, 11));
+        p1.setFont(new Font("SansSerif", Font.PLAIN, 11));
+        p2.setFont(new Font("SansSerif", Font.PLAIN, 11));
+        nwB.setFont(new Font("SansSerif", Font.BOLD, 11));
+        unB.setFont(new Font("SansSerif", Font.BOLD, 11));
+        hlpB.setFont(new Font("SansSerif", Font.PLAIN, 11));
+        snB.setFont(new Font("SansSerif", Font.PLAIN, 11));
+        msg.setFont(new Font("SansSerif", Font.PLAIN, 11)); 
 
         nwB.setCursor(new Cursor(Cursor.HAND_CURSOR));
         unB.setCursor(new Cursor(Cursor.HAND_CURSOR));
@@ -120,16 +120,16 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
         unB.addActionListener(this);
         hlpB.addActionListener(this);
         snB.addActionListener(this);
-        nwB.setBounds(405,70,95,25);//297
+        nwB.setBounds(405, 70, 95, 25);//297
         this.add(nwB);
-        unB.setBounds(405,100,95,25);
+        unB.setBounds(405, 100, 95, 25);
         //this.add(unB);
-        hlpB.setBounds(415,10,25,25);
+        hlpB.setBounds(415, 10, 25, 25);
         this.add(hlpB);
-        snB.setBounds(460,10,25,25);
+        snB.setBounds(460, 10, 25, 25);
         this.add(snB);
 
-        mode.setBounds(420,260,80,25);
+        mode.setBounds(420, 260, 80, 25);
         this.add(mode);
         p1.addActionListener(this);
         p2.addActionListener(this);
@@ -137,12 +137,12 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
         p2.setCursor(new Cursor(Cursor.HAND_CURSOR));
         players.add(p1);
         players.add(p2);
-        p1.setBounds(415,290,80,25);
-        p2.setBounds(415,318,80,25);
+        p1.setBounds(415, 290, 80, 25);
+        p2.setBounds(415, 318, 80, 25);
         this.add(p1);
         this.add(p2);
 
-        col.setBounds(110,400,80,25);
+        col.setBounds(110, 400, 80, 25);
         //this.add(col);
         c1.addActionListener(this);
         c2.addActionListener(this);
@@ -150,8 +150,8 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
         c2.setCursor(new Cursor(Cursor.HAND_CURSOR));
         colors.add(c1);
         colors.add(c2);
-        c1.setBounds(90,440,80,25);
-        c2.setBounds(90,420,80,25);
+        c1.setBounds(90, 440, 80, 25);
+        c2.setBounds(90, 420, 80, 25);
         //this.add(c1);
         //this.add(c2);
 
@@ -163,40 +163,40 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
         level.addItem("Bit Difficult");
         level.addItem("Tough");
         level.setSelectedIndex(2);
-        level.setBounds(415,200,80,25);
+        level.setBounds(415, 200, 80, 25);
         this.add(level);
 
         diff.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        diff.setBounds(415,170,100,25);
+        diff.setBounds(415, 170, 100, 25);
         this.add(diff);
 
         this.addMouseListener(this);
         this.addMouseMotionListener(this);
 
-        msg.setBounds(0,405,400,20);
+        msg.setBounds(0, 405, 400, 20);
         msg.setEnabled(false);
         this.add(msg);
 
         rp.setBounds(10, 440, 50, 50);
-        rp.setIcon(yellowN);			// changed from redN to yellowN
+        rp.setIcon(yellowN);	// changed from redN to yellowN
         this.add(rp);
         rpt.setBounds(60, 450, 60, 20);
         this.add(rpt);
 
         bp.setBounds(110, 440, 50, 50);
-        bp.setIcon(redN);			// changed from yellowN to redN
+        bp.setIcon(redN);	// changed from yellowN to redN
         this.add(bp);
         bpt.setBounds(160, 450, 90, 20);
         this.add(bpt);
 
         rk.setBounds(250, 440, 50, 50);
-        rk.setIcon(yellowK);			// changed from redK to yellowK
+        rk.setIcon(yellowK);	// changed from redK to yellowK
         this.add(rk);
         rkt.setBounds(305, 450, 60, 20);
         this.add(rkt);
 
         bk.setBounds(365, 440, 50, 50);
-        bk.setIcon(redK);			// changed from yellowK to redK
+        bk.setIcon(redK);	// changed from yellowK to redK
         this.add(bk);
         bkt.setBounds(420, 450, 100, 20);
         this.add(bkt);
@@ -212,19 +212,19 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
 
     public void paintComponent(Graphics g)	{
 		super.paintComponent(g);
-        g.setColor(new Color(0,0,0));
+        g.setColor(new Color(0, 0, 0));
 
-        for(int i=0;i<4;i++){
-            for(int j=0;j<4;j++){
-                g.fillRect(100*j,100*i,50,50);
+        for(int i = 0; i < 4; i++){
+            for(int j = 0; j < 4; j++){
+                g.fillRect(100 * j, 100 * i, 50, 50);
             }
         }
-        for(int i=0;i<4;i++){
-            for(int j=0;j<4;j++){
-                g.fillRect(50+100*j,50+100*i,50,50);
+        for(int i = 0; i < 4; i++){
+            for(int j = 0; j < 4; j++){
+                g.fillRect(50 + 100 * j, 50 + 100 * i, 50, 50);
             }
         }
-        g.drawLine(0,400,400,400);
+        g.drawLine(0, 400, 400, 400);
         g.drawLine(400, 0, 400, 400);
         drawCheckers();
     }
@@ -288,7 +288,7 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
         }
     }
 
-    public void newGame()	{                            //creates a new game
+    public void newGame(){    //creates a new game
 
         //Yellow takes the first move in both modes
         //If someone wants to move secondly, red has to be selected
@@ -302,7 +302,7 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
 
         won = 0;
 
-        undoCount=0;
+        undoCount = 0;
 
 
         highlight = false;
@@ -357,16 +357,16 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
         for(int i = 0; i < 8; i++){
             for(int j = 0; j < 8; j++){
                 if(board[i][j] == redNormal){
-                    g.drawImage(redN.getImage(), i*50, j*50, this);
+                    g.drawImage(redN.getImage(), i * 50, j * 50, this);
                 }
                 else if(board[i][j] == yellowNormal){
-                    g.drawImage(yellowN.getImage(), i*50, j*50, this);
+                    g.drawImage(yellowN.getImage(), i * 50, j * 50, this);
                 }
                 else if(board[i][j] == redKing){
-                    g.drawImage(redK.getImage(), i*50, j*50, this);
+                    g.drawImage(redK.getImage(), i * 50, j * 50, this);
                 }
                 else if(board[i][j] == yellowKing){
-                    g.drawImage(yellowK.getImage(), i*50, j*50, this);
+                    g.drawImage(yellowK.getImage(), i * 50, j * 50, this);
                 }
             }
         }
@@ -414,18 +414,18 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
 
 		counter[0] = 0;
         
-		if (this.toMove == yellowNormal && selectedMode==1 && selectedColor.equalsIgnoreCase("yellow")){
+		if(this.toMove == yellowNormal && selectedMode==1 && selectedColor.equalsIgnoreCase("yellow")){
 			this.toMove = redNormal;
 			showStatus();
 			tempScore = GameEngine.MinMax(board, 0, difficulty + 2, result, this.toMove, counter);
 
-			if (result[0] == 0 && result[1] == 0){
+			if(result[0] == 0 && result[1] == 0){
 				loser = redNormal;
 			}
 			else{
                 CheckerMove.moveComputer(board, result);
 
-                if (loser == empty){
+                if(loser == empty){
                     new PlaySound("sounds/comPlay.wav").start();
                     play();
                 }
@@ -433,17 +433,17 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
 			}
 		}
 
-		else if (this.toMove == redNormal && selectedMode==1 && selectedColor.equalsIgnoreCase("red")){
+		else if(this.toMove == redNormal && selectedMode==1 && selectedColor.equalsIgnoreCase("red")){
 			this.toMove = yellowNormal;
 			showStatus();
 			tempScore = GameEngine.MinMax(board, 0, difficulty + 2, result, this.toMove, counter);
 
-			if (result[0] == 0 && result[1] == 0){
+			if(result[0] == 0 && result[1] == 0){
 				loser = yellowNormal;
 			}
 			else{
                 CheckerMove.moveComputer(board, result);
-                if (loser == empty){
+                if(loser == empty){
                     new PlaySound("sounds/comPlay.wav").start();
                     play();
                 }
@@ -452,15 +452,15 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
 			}
 		}
 		else{
-            if (this.toMove == redNormal){
+            if(this.toMove == redNormal){
 				this.toMove = yellowNormal;
             }
 			else{
 				this.toMove = redNormal;
 			}
         }
-		if (CheckerMove.noMovesLeft(board, this.toMove)) {
-			if (this.toMove == redNormal){
+		if(CheckerMove.noMovesLeft(board, this.toMove)) {
+			if(this.toMove == redNormal){
 				loser = redNormal;
 			}
 			else{
@@ -488,11 +488,11 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
             square= CheckerMove.getIndex(x,y);
         }
         
-        if (toMove == Checkers.redNormal &&	(board[square[0]][square[1]] == Checkers.redNormal || board[square[0]][square[1]] == Checkers.redKing)|| toMove == Checkers.yellowNormal && (board[square[0]][square[1]] == Checkers.yellowNormal || board[square[0]][square[1]] == Checkers.yellowKing)){
+        if(toMove == Checkers.redNormal &&	(board[square[0]][square[1]] == Checkers.redNormal || board[square[0]][square[1]] == Checkers.redKing)|| toMove == Checkers.yellowNormal && (board[square[0]][square[1]] == Checkers.yellowNormal || board[square[0]][square[1]] == Checkers.yellowKing)){
 
 			// we don't want to lose the incomplete move info:
 			// only set new start variables if !incomplete
-			if (!incomplete){
+			if(!incomplete){
 				highlight = true;
 				startX = square[0];
 				startY = square[1];
@@ -504,7 +504,7 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
                 new PlaySound("sounds/clickChecker.wav").start();
             }
 		}
-		else if ( highlight  && (float)(square[0]+square[1]) / 2 != (square[0]+square[1]) / 2){
+		else if(highlight  && (float)(square[0]+square[1]) / 2 != (square[0]+square[1]) / 2){
 			endX = square[0];
 			endY = square[1];
 			int status = CheckerMove.ApplyMove(board, startX, startY, endX, endY);
@@ -551,19 +551,19 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
     }
 
     private void showStatus() {//prints msgs to the statuss bar
-        if (this.toMove == redNormal){
+        if(this.toMove == redNormal){
             msg.setText("Red move");
         }
         else{
             msg.setText("Yellow move");
         }
 
-        if (loser == redNormal && won == 0){
+        if(loser == redNormal && won == 0){
             msg.setText("Yellow Wins!");
-            try {
+            try{
                 Thread.sleep(150);
             } 
-            catch (InterruptedException e) {
+            catch(InterruptedException e) {
                 e.printStackTrace();
             }
             new GameWin("Yellow", this.getLocationOnScreen());
@@ -571,12 +571,12 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
             undoCount = 0;
             newGame();
         }
-        else if (loser == yellowNormal && won == 0){
+        else if(loser == yellowNormal && won == 0){
             msg.setText("Red Wins!");
-            try {
+            try{
                 Thread.sleep(150);
             } 
-            catch (InterruptedException e) {
+            catch(InterruptedException e) {
                 e.printStackTrace();
             }            
             new GameWin("Red", this.getLocationOnScreen());

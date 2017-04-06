@@ -29,7 +29,7 @@ public class PlaySound extends Thread {
         }
         
         File soundFile = new File(filename);
-		if (!soundFile.exists()) {
+		if(!soundFile.exists()) {
 			System.err.println("Wave file not found: " + filename);
 			return;
 		}
@@ -38,11 +38,11 @@ public class PlaySound extends Thread {
 		try {
 			audioInputStream = AudioSystem.getAudioInputStream(soundFile);
 		} 
-		catch (UnsupportedAudioFileException e1) {
+		catch(UnsupportedAudioFileException e1) {
 			e1.printStackTrace();
 			return;
 		} 
-		catch (IOException e1) {
+		catch(IOException e1) {
 			e1.printStackTrace();
 			return;
 		}
@@ -55,16 +55,16 @@ public class PlaySound extends Thread {
 			auline = (SourceDataLine) AudioSystem.getLine(info);
 			auline.open(format);
 		} 
-		catch (LineUnavailableException e) {
+		catch(LineUnavailableException e) {
 			e.printStackTrace();
 			return;
 		} 
-		catch (Exception e) {
+		catch(Exception e) {
 			e.printStackTrace();
 			return;
 		}
 
-		if (auline.isControlSupported(FloatControl.Type.PAN)) {
+		if(auline.isControlSupported(FloatControl.Type.PAN)) {
 			FloatControl pan = (FloatControl) auline.getControl(FloatControl.Type.PAN);
 		}
 
@@ -73,14 +73,14 @@ public class PlaySound extends Thread {
 		byte[] abData = new byte[EXTERNAL_BUFFER_SIZE];
 
 		try {
-			while (nBytesRead != -1) {
+			while(nBytesRead != -1) {
 				nBytesRead = audioInputStream.read(abData, 0, abData.length);
-				if (nBytesRead >= 0){
+				if(nBytesRead >= 0){
 					auline.write(abData, 0, nBytesRead);
 				}
 			}
 		} 
-		catch (IOException e) {
+		catch(IOException e) {
 			e.printStackTrace();
         }
 		finally {

@@ -34,17 +34,17 @@ public class Help extends JDialog {
 
     private void addText() {
         String str;
-        try {
+        try{
             BufferedReader b = new BufferedReader(new FileReader(new File("HowToPlay.is")));
-            try {
+            try{
                 while((str = b.readLine()) != null)
                     txt.append(str + "\n");
             } 
-            catch (IOException e) {
+            catch(IOException e) {
                 e.printStackTrace();
             }
         }
-        catch (FileNotFoundException e) {
+        catch(FileNotFoundException e) {
             e.printStackTrace();
         }
     }

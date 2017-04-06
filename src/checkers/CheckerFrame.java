@@ -10,11 +10,11 @@ public class CheckerFrame extends JFrame implements ActionListener{
     JPanel gmP = new StartPanel();
   
     CheckerFrame(){
-        try {
+        try{
             UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
             SwingUtilities.updateComponentTreeUI(this); //changing the appearance of the frame
         }
-        catch (Exception e) {
+        catch(Exception e) {
            //no need to handle exception as it only affect the appearance
         }
         setupGUI();
