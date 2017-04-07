@@ -36,12 +36,10 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
     JLabel col = new JLabel("Colour");
     JLabel diff = new JLabel("Difficulty Level");
     JLabel rp = new JLabel();
-    JLabel rpt = new JLabel("Your Piece");
-    JLabel bpt = new JLabel("Opponent's Piece");
+    JLabel rpt = new JLabel("Regular Pieces");
     JLabel bp = new JLabel();
     JLabel rk = new JLabel();
-    JLabel rkt = new JLabel("Your King");
-    JLabel bkt = new JLabel("Opponent's King");
+    JLabel rkt = new JLabel("Kings");
     JLabel bk = new JLabel();
 
     JComboBox level = new JComboBox();
@@ -49,6 +47,7 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
     String selectedColor;
     int selectedMode;
     int difficulty;
+    int previousTileYellow, previousTileRed, tempPrevious, moveYellow, moveRed;
 
     static final int redNormal = 1;
 	static final int yellowNormal = 2;
@@ -123,7 +122,7 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
         nwB.setBounds(405, 70, 95, 25);//297
         this.add(nwB);
         unB.setBounds(405, 100, 95, 25);
-        //this.add(unB);
+        this.add(unB);
         hlpB.setBounds(415, 10, 25, 25);
         this.add(hlpB);
         snB.setBounds(460, 10, 25, 25);
@@ -177,30 +176,26 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
         msg.setEnabled(false);
         this.add(msg);
 
-        rp.setBounds(10, 440, 50, 50);
-        rp.setIcon(yellowN);	// changed from redN to yellowN
+        //The pieces at the bottom
+        rp.setBounds(90, 433, 50, 50);
+        rp.setIcon(yellowN);
         this.add(rp);
-        rpt.setBounds(60, 450, 60, 20);
-        this.add(rpt);
-
-        bp.setBounds(110, 440, 50, 50);
-        bp.setIcon(redN);	// changed from yellowN to redN
+        bp.setBounds(140, 433, 50, 50);
+        bp.setIcon(redN);
         this.add(bp);
-        bpt.setBounds(160, 450, 90, 20);
-        this.add(bpt);
-
-        rk.setBounds(250, 440, 50, 50);
-        rk.setIcon(yellowK);	// changed from redK to yellowK
+        rk.setBounds(320, 433, 50, 50);
+        rk.setIcon(yellowK);
         this.add(rk);
-        rkt.setBounds(305, 450, 60, 20);
-        this.add(rkt);
-
-        bk.setBounds(365, 440, 50, 50);
-        bk.setIcon(redK);	// changed from yellowK to redK
+        bk.setBounds(370, 433, 50, 50);
+        bk.setIcon(redK);
         this.add(bk);
-        bkt.setBounds(420, 450, 100, 20);
-        this.add(bkt);
 
+        //Labels describing pieces
+        rpt.setBounds(10, 450, 100, 15);
+        this.add(rpt);
+        rkt.setBounds(280, 450, 60, 20);
+        this.add(rkt);
+        
         //g=getGraphics();
         //g.drawImage(redN.getImage(),30,450,this);
         
@@ -289,6 +284,8 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
     }
 
     public void newGame(){    //creates a new game
+    	moveYellow = 0;
+    	moveRed = 0;
 
         //Yellow takes the first move in both modes
         //If someone wants to move secondly, red has to be selected
@@ -353,10 +350,9 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
 
     public void drawCheckers(){ //paint checkers on the board
        g = getGraphics();
-
         for(int i = 0; i < 8; i++){
             for(int j = 0; j < 8; j++){
-                if(board[i][j] == redNormal){
+            	if(board[i][j] == redNormal){
                     g.drawImage(redN.getImage(), i * 50, j * 50, this);
                 }
                 else if(board[i][j] == yellowNormal){
@@ -374,6 +370,8 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
     }
 
     public void undo(){//undo function
+    	moveYellow = 0;
+    	moveRed = 0;
         undoCount = 1;
         for(int i = 0; i < 8; i++){
             System.arraycopy(preBoard3[i], 0, board[i], 0, 8);//copies previous board
@@ -381,6 +379,7 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
         toMove = preToMove3;
         drawCheckers();
         update(g);
+        drawCheckers();
 
         if(selectedMode == 1){
             play();
@@ -424,7 +423,8 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
 			}
 			else{
                 CheckerMove.moveComputer(board, result);
-
+                //tempPrevious = CheckerMove.previousTile;
+        		//moveRed = 1;
                 if(loser == empty){
                     new PlaySound("sounds/comPlay.wav").start();
                     play();
@@ -467,7 +467,6 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
 				loser = yellowNormal;
 			}
 		}
-
         showStatus();
 	}
 
@@ -492,13 +491,15 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
 
 			// we don't want to lose the incomplete move info:
 			// only set new start variables if !incomplete
+        	//Store the location of this tile to use later
 			if(!incomplete){
 				highlight = true;
 				startX = square[0];
 				startY = square[1];
+				tempPrevious = (square[0] * 10 + square[1]);		
                 update(g);
                 g = getGraphics();
-                g.setColor(new Color(255, 100, 30));
+                g.setColor(new Color(255, 100, 30)); //ORANGE
                 g.fillRect(50 * square[0], 50 * square[1], 50, 50);                 
                 drawCheckers();
                 new PlaySound("sounds/clickChecker.wav").start();
@@ -513,6 +514,14 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
 				incomplete = false;
 				highlight = false;
 				play();
+				if(toMove == yellowNormal){
+					moveYellow = 1;
+					previousTileYellow = tempPrevious;
+				}	
+				else if(toMove == redNormal){
+					moveRed = 1;
+					previousTileRed = tempPrevious;
+				}
                 update(g);
                 drawCheckers();
                 break;
@@ -522,6 +531,14 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
 				// the ending square is now starting square for the next capture
 				startX = square[0];
 				startY = square[1];
+				if(toMove == yellowNormal){
+					moveYellow = 1;
+					previousTileYellow = tempPrevious;
+				}	
+				else if(toMove == redNormal){
+					moveRed = 1;
+					previousTileRed = tempPrevious;
+				}
                 update(g);
                 g = getGraphics();
                 g.setColor(new Color(255, 100, 30));
@@ -585,6 +602,27 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
             newGame();            
         }
     }
+    
+    /**
+     * Use the variable 'previousTile' to maintain the location of the last used tile, and highlight it
+     * This highlights the yellow tile
+     */
+    public void highlightPreviousYellow(){
+	    g = getGraphics();
+	    g.setColor(new Color(0, 200, 30)); //LIGHT GREEN
+	    g.fillRect(50 * (previousTileYellow / 10), 50 * (previousTileYellow % 10), 50, 50);
+    }
+    
+    /**
+     * Use the variable 'previousTile' to maintain the location of the last used tile, and highlight it
+     * This highlights the yellow tile
+     */
+    public void highlightPreviousRed(){
+	    g = getGraphics();
+	    g.setColor(new Color(0, 191, 255)); //LIGHT BLUE
+	    g.fillRect(50 * (previousTileRed / 10), 50 * (previousTileRed % 10), 50, 50);
+    }
+    
    // The AWT invokes the update() method in response to the repaint() method
    // calls that are made as a checker is dragged. The default implementation
    // of this method, which is inherited from the Container class, clears the
@@ -595,5 +633,11 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
     @Override
     public void update(Graphics g){                                                                                                     
         paint(g);
+        if(moveYellow == 1){
+        	highlightPreviousYellow();
+        }
+        if(moveRed == 1){
+        	highlightPreviousRed();
+        }
     }
 }

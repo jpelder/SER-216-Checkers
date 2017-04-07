@@ -11,4 +11,6 @@ CHANGES MADE BEFORE INITIAL PUSH TO GITHUB: Some of the image file names had to 
 
 4/5/17: Cleaned up the code - adding/moving brackets, spacing,  etc. Added our group names to the credits in the beginning, and some button tool tips.
 
-4/6/17: Cleaned up code - spacing. 
+4/6/17: Cleaned up code - spacing. Changed the bottom of the GUI (post 'start game'). Changed the help box. Working on showing which tile was previously used (most recently). Set up the framework of the junit testing.
+
+4/7/17: Edited the Help Box. Added the Undo button - already in the code, just had to uncomment it. Added highlighting to show the previous spots of moved tiles (most recently moved tile).
