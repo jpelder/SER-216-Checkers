@@ -47,7 +47,7 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
     String selectedColor;
     int selectedMode;
     int difficulty;
-    int previousTileYellow, previousTileRed, tempPrevious, moveYellow, moveRed;
+    int previousTileYellow, previousTileRed, tempPrevious, tempPreviousCP, moveYellow, moveRed;
 
     static final int redNormal = 1;
 	static final int yellowNormal = 2;
@@ -423,8 +423,8 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
 			}
 			else{
                 CheckerMove.moveComputer(board, result);
-                //tempPrevious = CheckerMove.previousTile;
-        		//moveRed = 1;
+                tempPreviousCP = CheckerMove.previousTile;
+        		moveRed = 1;
                 if(loser == empty){
                     new PlaySound("sounds/comPlay.wav").start();
                     play();
@@ -514,13 +514,19 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
 				incomplete = false;
 				highlight = false;
 				play();
-				if(toMove == yellowNormal){
+				if(selectedMode == 1){
 					moveYellow = 1;
 					previousTileYellow = tempPrevious;
-				}	
-				else if(toMove == redNormal){
-					moveRed = 1;
-					previousTileRed = tempPrevious;
+				}
+				else{
+					if(toMove == redNormal){
+						moveYellow = 1;
+						previousTileYellow = tempPrevious;
+					}	
+					else if(toMove == yellowNormal){
+						moveRed = 1;
+						previousTileRed = tempPrevious;
+					}
 				}
                 update(g);
                 drawCheckers();
@@ -531,13 +537,19 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
 				// the ending square is now starting square for the next capture
 				startX = square[0];
 				startY = square[1];
-				if(toMove == yellowNormal){
+				if(selectedMode == 1){
 					moveYellow = 1;
 					previousTileYellow = tempPrevious;
-				}	
-				else if(toMove == redNormal){
-					moveRed = 1;
-					previousTileRed = tempPrevious;
+				}
+				else{
+					if(toMove == redNormal){
+						moveYellow = 1;
+						previousTileYellow = tempPrevious;
+					}	
+					else if(toMove == yellowNormal){
+						moveRed = 1;
+						previousTileRed = tempPrevious;
+					}
 				}
                 update(g);
                 g = getGraphics();
@@ -620,6 +632,9 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
     public void highlightPreviousRed(){
 	    g = getGraphics();
 	    g.setColor(new Color(0, 191, 255)); //LIGHT BLUE
+	    if(selectedMode == 1){
+	    	previousTileRed = tempPreviousCP;
+	    }
 	    g.fillRect(50 * (previousTileRed / 10), 50 * (previousTileRed % 10), 50, 50);
     }
     
