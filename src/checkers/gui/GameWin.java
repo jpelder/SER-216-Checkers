@@ -1,7 +1,10 @@
-package checkers;
+package checkers.gui;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JLabel;
+import javax.swing.JDialog;
+
+import java.awt.Point;
+import java.awt.Font;
 
 public class GameWin extends JDialog{
     Point p;

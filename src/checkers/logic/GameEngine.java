@@ -1,14 +1,16 @@
-package checkers;
+package checkers.logic;
+
+import checkers.gui.Checkers;
      
 import java.util.Vector;
 //game tree implementation
 public class GameEngine {
 
-    final static int inf = Integer.MAX_VALUE;
-    final static int normal = 100; //one checker worth 100
-    final static int king = 200; //a King's worth
-    final static int pos = 1; //one position along the -j worth 1
-    final static int edge = 10; // effect of king being on the edge
+    private final static int inf = Integer.MAX_VALUE;
+    private final static int normal = 100; //one checker worth 100
+    private final static int king = 200; //a King's worth
+    private final static int pos = 1; //one position along the -j worth 1
+    private final static int edge = 10; // effect of king being on the edge
 
 /*********************  Evaluation Function  **********************************
 
@@ -84,7 +86,11 @@ Weight of checkers
           return MinMax(board, depth, maxDepth, move, toMove, counter, inf, -inf);
       }
 
+<<<<<<< HEAD:src/checkers/GameEngine.java
       public static int MinMax(int[][] board, int depth, int maxDepth,int[] move, int turn, int[] counter, int redBest, int yellowBest){
+=======
+      private static int MinMax(int[][] board, int depth, int maxDepth,int[] move, int turn, int[] counter, int redBest, int yellowBest){
+>>>>>>> 76236686b6222c7c7d8a2302a23478e2e59fd2e0:src/checkers/logic/GameEngine.java
         int score, bestScore;
         int[][] newBoard;
         int[] bestMove = new int[4];
@@ -137,7 +143,6 @@ Weight of checkers
                         }
                     }
                 }
-
                 else if(turn == Checkers.redNormal && score < bestScore) {
                     bestMove = (int[])movesList.elementAt(i);
                     bestScore = score;
@@ -151,7 +156,6 @@ Weight of checkers
                 }
             }
         }
-
           System.arraycopy(bestMove, 0, move, 0, 4);
           return bestScore;
       }

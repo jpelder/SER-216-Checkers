@@ -1,8 +1,16 @@
-package checkers;
+package checkers.gui;
 
-import javax.swing.*;
-import java.io.*;
-import java.awt.*;
+import javax.swing.JDialog;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.File;
+import java.io.IOException;
+import java.io.FileNotFoundException;
+
+import java.awt.Font;
 
 public class Help extends JDialog {
     JScrollPane hlp = new JScrollPane();
@@ -35,7 +43,7 @@ public class Help extends JDialog {
     private void addText() {
         String str;
         try{
-            BufferedReader b = new BufferedReader(new FileReader(new File("HowToPlay.is")));
+            BufferedReader b = new BufferedReader(new FileReader(new File("HowToPlay.txt")));
             try{
                 while((str = b.readLine()) != null)
                     txt.append(str + "\n");

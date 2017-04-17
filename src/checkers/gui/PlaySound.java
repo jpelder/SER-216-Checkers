@@ -1,7 +1,9 @@
-package checkers;
+package checkers.gui;
 
 import java.io.File;
 import java.io.IOException;
+
+import javax.media.j3d.Sound;
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -27,16 +29,10 @@ public class PlaySound extends Thread {
         if(Checkers.silent){
         	return;
         }
-        
-        File soundFile = new File(filename);
-		if(!soundFile.exists()) {
-			System.err.println("Wave file not found: " + filename);
-			return;
-		}
 
 		AudioInputStream audioInputStream;
 		try {
-			audioInputStream = AudioSystem.getAudioInputStream(soundFile);
+			audioInputStream = AudioSystem.getAudioInputStream(getClass().getResource(filename));
 		} 
 		catch(UnsupportedAudioFileException e1) {
 			e1.printStackTrace();

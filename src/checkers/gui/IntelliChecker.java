@@ -1,4 +1,6 @@
-package checkers;
+package checkers.gui;
+
+
 
 public class IntelliChecker {
     public static void main(String args[]) throws Exception {

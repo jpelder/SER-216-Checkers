@@ -1,25 +1,29 @@
-package checkers;
+package checkers.logic;
 
 import java.util.Vector;
 
+import checkers.gui.Checkers;
+
 //class for movements
 public class CheckerMove {
-	final static int legalMove = 1;
-	final static int illegalMove = 2;
-	final static int incompleteMove = 3;
-	static int previousTile;
+	public final static int legalMove = 1;
+	public final static int illegalMove = 2;
+	public final static int incompleteMove = 3;
+	public static int previousTile;
 
     /**
      * returns the index according to the given x and y values
      */
 
-    static int [] getIndex(int x,int y){
+    public static int [] getIndex(int x,int y){
         int [] index = new int [2];
         for(int i = 0; i < 8; i++){
             for(int j = 0; j < 8; j++){
                 if(i * 50 < x && i * 50 + 50 > x && j * 50 < y && j * 50 + 50 > y){
                     index[0] = i;
                     index[1] = j;
+                    System.out.printf("X: %d, Y: %d", x,y);
+                    System.out.printf("Index:%d ,%d\n",index[0],index[1]);
                     return index;
                 }
             }
@@ -31,7 +35,7 @@ public class CheckerMove {
     noMovesLeft return true if no more movents are left for the next player
     else it returns false
     */
-    static boolean noMovesLeft(int[][] board, int toMove){
+    public static boolean noMovesLeft(int[][] board, int toMove){
     	for(int i = 0; i < 8; i++){
     		for(int j = 0; j < 8; j++){
     			if((float)(i + j) / 2 != (i + j) / 2 ){
@@ -64,7 +68,7 @@ public class CheckerMove {
      Move checker to a new position
     */
 
-    static int ApplyMove(int[][] board, int srtI, int srtJ, int endI, int endJ){
+    public static int ApplyMove(int[][] board, int srtI, int srtJ, int endI, int endJ){
     	int result = isMoveLegal(board, srtI, srtJ, endI, endJ, colour(board[srtI][srtJ]));
     	previousTile = (srtI * 10 + srtJ);
          	if(result != illegalMove){
@@ -102,7 +106,7 @@ public class CheckerMove {
      Returns incompleteMove if a capture has taken place.
      Note: it does not check if a 2nd capture is possible!
     */
-    static int isMoveLegal(int[][] board, int srtI, int srtJ, int endI, int endJ, int turn){
+    public static int isMoveLegal(int[][] board, int srtI, int srtJ, int endI, int endJ, int turn){
     	if(!(inRange(srtI,srtJ) && inRange(endI,endJ) )){  /*if try to move out of the board,*/
     		return illegalMove;     //returns illegal move
     	}
@@ -189,7 +193,7 @@ public class CheckerMove {
     	return illegalMove; //if the situation is not one of these it should be illegal.
     }
 
-    static int isWalkLegal(int[][] board,int srtI,int srtJ,int endI,int endJ){
+    public static int isWalkLegal(int[][] board,int srtI,int srtJ,int endI,int endJ){
     	if(!(inRange(srtI,srtJ) && inRange(endI,endJ) ) ){
     		return illegalMove;
     	}
@@ -221,7 +225,7 @@ public class CheckerMove {
     	return illegalMove;
     }
 
-    static boolean canCapture(int[][] board, int toMove){
+    public static boolean canCapture(int[][] board, int toMove){
     	for(int i = 0; i < 8; i++){
     		for(int j = 0; j < 8; j++){
     			if(colour(board[i][j]) == toMove && canCapture(board, i, j)){
@@ -234,7 +238,7 @@ public class CheckerMove {
 
     // examines a board board to see if the piece indicated at (x,y)
     // can make a(nother) capture
-    static boolean canCapture(int[][] board, int i, int j){
+    private static boolean canCapture(int[][] board, int i, int j){
     	switch (board[i][j]){
     	case Checkers.redNormal:
     		//check if (red)checkers go out of the board
@@ -321,7 +325,7 @@ public class CheckerMove {
     // canWalk() returns true if the piece on (i,j) can make a
     // legal non-capturing move
     // Imporatant to see if the game is over
-    static boolean canWalk(int[][] board, int i, int j){
+    public static boolean canWalk(int[][] board, int i, int j){
     	switch(board[i][j] ){
     	case Checkers.redNormal:
     		if(isEmpty(board, i + 1, j + 1) || isEmpty(board, i - 1, j + 1)){
@@ -343,7 +347,7 @@ public class CheckerMove {
     	return false;
     } 
 
-    private static boolean isEmpty(int[][] board, int i, int j){
+    public static boolean isEmpty(int[][] board, int i, int j){
     	if(i > -1 && i < 8 && j > -1 && j < 8){
     		if(board[i][j] == Checkers.empty){
     			return true;
@@ -353,7 +357,7 @@ public class CheckerMove {
     }
 
     // returns the color of a piece
-    static int colour(int piece){
+    public static int colour(int piece){
     	switch (piece){
     	case Checkers.redNormal:
     	case Checkers.redKing:
@@ -371,7 +375,7 @@ public class CheckerMove {
     }
 
     //given a board, generates all the possible moves depending on whose turn
-    static Vector  generateMoves(int[][] board, int turn) {
+    public static Vector  generateMoves(int[][] board, int turn) {
     	Vector moves_list = new Vector();
     	int move;
 
@@ -418,7 +422,7 @@ public class CheckerMove {
     }
 
     //"apply move" in the Minimax.  simply moves the board give moves
-    static void moveComputer(int[][] board, int[] move){
+    public static void moveComputer(int[][] board, int[] move){
         int startx = move[0];
         int starty = move[1];
         int endx = move[2];

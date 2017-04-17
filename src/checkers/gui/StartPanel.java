@@ -1,7 +1,11 @@
-package checkers;
+package checkers.gui;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JPanel;
+import javax.swing.ImageIcon;
+
+import java.awt.Graphics;
+import java.awt.Color;
+import java.awt.Font;
 
 public class StartPanel extends JPanel{
     
