@@ -19,4 +19,4 @@ CHANGES MADE BEFORE INITIAL PUSH TO GITHUB: Some of the image file names had to 
 
 4/14/17: Fixed file structure so that gui and logic are separated into different packages. Fixed import statements in all class files so that they are not importing all classes from awt, and swing. Fixed HowToPlay folder as a text file, will try to work and make it formatted properly.
 
-4/16/17: Created a resources source folder that holds both sounds and image files. Fixed PlaySound so that sound is being pulled from resource folder, removed File class declaration in played sound.
+4/16/17: Created a resources source folder that holds both sounds and image files. Fixed PlaySound so that sound is being pulled from resource folder, removed File class declaration in played sound. CheckerMoveTest at 57% code completion.
