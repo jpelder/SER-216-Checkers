@@ -9,10 +9,10 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
     Graphics g;
 
     JTextArea msg = new JTextArea("Select Mode then Start New Game!");
-    ImageIcon redN = new ImageIcon(new ImageIcon(getClass().getResource("../images/red_normal.jpg")).getImage());//red_normal.jpg
-    ImageIcon yellowN = new ImageIcon(new ImageIcon(getClass().getResource("../images/yellow_normal.jpg")).getImage());//yellow_normal.jpg
-    ImageIcon redK = new ImageIcon(new ImageIcon(getClass().getResource("../images/red_king.jpg")).getImage());//red_king.jpg
-    ImageIcon yellowK = new ImageIcon(new ImageIcon(getClass().getResource("../images/yellow_king.jpg")).getImage());//yellow_king.jpg
+    public ImageIcon redN = new ImageIcon(new ImageIcon(getClass().getResource("../images/red_normal.jpg")).getImage());//red_normal.jpg
+    public ImageIcon yellowN = new ImageIcon(new ImageIcon(getClass().getResource("../images/yellow_normal.jpg")).getImage());//yellow_normal.jpg
+    public ImageIcon redK = new ImageIcon(new ImageIcon(getClass().getResource("../images/red_king.jpg")).getImage());//red_king.jpg
+    public ImageIcon yellowK = new ImageIcon(new ImageIcon(getClass().getResource("../images/yellow_king.jpg")).getImage());//yellow_king.jpg
     ImageIcon hlp = new ImageIcon(new ImageIcon(getClass().getResource("../images/help.jpg")).getImage());//help.jpg
     ImageIcon snp = new ImageIcon(new ImageIcon(getClass().getResource("../images/sound.jpg")).getImage());//sound.jpg
     ImageIcon mup = new ImageIcon(new ImageIcon(getClass().getResource("../images/mute.jpg")).getImage());//mute.jpg
@@ -49,10 +49,10 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
     int difficulty;
     int previousTileYellow, previousTileRed, tempPrevious, tempPreviousCP, moveYellow, moveRed;
 
-    static final int redNormal = 1;
-	static final int yellowNormal = 2;
-	static final int redKing = 3;
-	static final int yellowKing = 4;
+    public static final int redNormal = 1;
+    public static final int yellowNormal = 2;
+    public static final int redKing = 3;
+    public static final int yellowKing = 4;
 	static final int empty = 0;
 
     int currType;
@@ -82,7 +82,7 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
 
     Point winPoint;
 
-    Checkers(){
+    public Checkers(){
         setupGUI();
     }
 
