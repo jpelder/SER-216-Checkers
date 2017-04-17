@@ -40,7 +40,6 @@ public class GameEngineTest {
 				boardYel[i][j]=(Checkers.yellowNormal);
 				boardRedKing[i][j]=(Checkers.redKing);
 				boardYelKing[i][j]=(Checkers.yellowKing);
-				copyBoard = GameEngine.copyBoard(boardRed);
 			}
 		}
 		//This entire GameEngine class is static so there is no need to do any GameEngine set up here.
@@ -55,6 +54,14 @@ public class GameEngineTest {
 		assertTrue (GameEngine.eval(boardRedKing) == -12480);
 		assertTrue (GameEngine.eval(boardYelKing) == 12480);
 		
+		//This tests the checkers board 
+		copyBoard = GameEngine.copyBoard(boardRed);
+		for (int i =0; i<8 ; i++){
+			for (int j=0 ; j<8; j++){
+					assertTrue (copyBoard[i][j] == Checkers.redNormal);
+			}
+		}
+		
 		assertTrue (GameEngine.MinMax(boardRed, 1, 2, boardRed[0],1,boardRed[2]) == 2147483647);
 		
 		//Changing if depth is equal and whose turn it is. 
@@ -64,12 +71,6 @@ public class GameEngineTest {
 		assertTrue (GameEngine.MinMax(boardRed, 1, 1, boardRed[0],1,boardRed[0], 7, 8) == -7022);
 		assertTrue (GameEngine.MinMax(boardRed, 1, 2, boardRed[0],2,boardRed[0], 7, 8) == -2147483647);
 		assertTrue (GameEngine.MinMax(boardRed, 1, 2, boardRed[0],2,boardRed[0], 7, 8) == -2147483647);
-		//This tests the checkers board 
-		for (int i =0; i<8 ; i++){
-			for (int j=0 ; j<8; j++){
-					assertTrue (copyBoard[i][j] == Checkers.redNormal);
-			}
-		}
 		//Simple methods, take an int and return an int.
 		assertTrue(GameEngine.getOpponent(4) == 2);
 		assertTrue(GameEngine.getTurn(2) == -2147483647);
