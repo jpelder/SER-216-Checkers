@@ -86,11 +86,7 @@ Weight of checkers
           return MinMax(board, depth, maxDepth, move, toMove, counter, inf, -inf);
       }
 
-<<<<<<< HEAD:src/checkers/GameEngine.java
       public static int MinMax(int[][] board, int depth, int maxDepth,int[] move, int turn, int[] counter, int redBest, int yellowBest){
-=======
-      private static int MinMax(int[][] board, int depth, int maxDepth,int[] move, int turn, int[] counter, int redBest, int yellowBest){
->>>>>>> 76236686b6222c7c7d8a2302a23478e2e59fd2e0:src/checkers/logic/GameEngine.java
         int score, bestScore;
         int[][] newBoard;
         int[] bestMove = new int[4];

@@ -14,8 +14,8 @@ import javax.swing.ImageIcon;
 import org.junit.Before;
 import org.junit.Test;
 
-import checkers.Checkers;
-import checkers.GameEngine;
+import checkers.gui.Checkers;
+import checkers.logic.GameEngine;
 
 /**
  * This test case will ensure that GameEngine is functioning appropriately
@@ -31,7 +31,7 @@ public class GameEngineTest {
 	int[][] boardRedKing = new int[8][8];
 	int[][] boardYelKing = new int[8][8];
 	int[][] copyBoard = new int[8][8];
-	
+	int inf = Integer.MAX_VALUE;
 	@Before
 	public void setUp() throws Exception {
 		for (int i =0; i<8 ; i++){
@@ -62,18 +62,18 @@ public class GameEngineTest {
 			}
 		}
 		
-		assertTrue (GameEngine.MinMax(boardRed, 1, 2, boardRed[0],1,boardRed[2]) == 2147483647);
+		assertTrue (GameEngine.MinMax(boardRed, 1, 2, boardRed[0],1,boardRed[2]) == inf);
 		
 		//Changing if depth is equal and whose turn it is. 
 		//These values are quite different from actual usage, as this example would not come up,
 		//but it provides a way to test extreme cases and all parts of the code.
-		assertTrue (GameEngine.MinMax(boardRed, 1, 2, boardRed[0],1,boardRed[0], 7, 8) == 2147483647 );
-		assertTrue (GameEngine.MinMax(boardRed, 1, 1, boardRed[0],1,boardRed[0], 7, 8) == -7022);
-		assertTrue (GameEngine.MinMax(boardRed, 1, 2, boardRed[0],2,boardRed[0], 7, 8) == -2147483647);
-		assertTrue (GameEngine.MinMax(boardRed, 1, 2, boardRed[0],2,boardRed[0], 7, 8) == -2147483647);
+		assertTrue (GameEngine.MinMax(boardRed, 1, 2, boardRed[0],1,boardRed[0], inf, -inf) == inf );
+		assertTrue (GameEngine.MinMax(boardRed, 1, 1, boardRed[0],1,boardRed[0], inf, -inf) == -7022);
+		assertTrue (GameEngine.MinMax(boardRed, 1, 2, boardRed[0],2,boardRed[0], inf, -inf) == -inf);
+		assertTrue (GameEngine.MinMax(boardRed, 1, 2, boardRed[0],2,boardRed[0], inf, -inf) == -inf);
 		//Simple methods, take an int and return an int.
 		assertTrue(GameEngine.getOpponent(4) == 2);
-		assertTrue(GameEngine.getTurn(2) == -2147483647);
+		assertTrue(GameEngine.getTurn(2) == -inf);
 	}
 
 }
