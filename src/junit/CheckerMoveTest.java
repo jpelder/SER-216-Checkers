@@ -8,6 +8,9 @@
 package junit;
 
 import static org.junit.Assert.*;
+
+import java.util.Vector;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -19,6 +22,7 @@ import checkers.gui.Checkers;
  * This test case will ensure that CheckerMove is working correctly
  */
 public class CheckerMoveTest {
+	
 	
 	private CheckerMove move;
 
@@ -131,6 +135,7 @@ public class CheckerMoveTest {
 		board[2][5] = 3; //Red King
 		board[6][5] = 4; //Yellow King
 		
+
 		assertEquals("This is a legal move for a normal yellow",1,move.isMoveLegal(board,3,5,4,4,2));
 		assertEquals("This move is illegal for a normal yellow due to out of range",2,move.isMoveLegal(board, 3, 5, 0, 7, 2));
 		assertEquals("This move is illegal for a normal yellow due to going backwards",2,move.isMoveLegal(board,3,5,2,6,2));
@@ -146,6 +151,12 @@ public class CheckerMoveTest {
 		assertEquals("This is a legal move for King Yellow",1,move.isMoveLegal(board, 6, 5, 5, 4, 4));
 		assertEquals("This is a legal move for Kind Yellow",1,move.isMoveLegal(board, 6, 5, 5, 6, 4));
 		assertEquals("This is illegal move for King Yellow",2,move.isMoveLegal(board, 6, 5, 8, 8, 4));
+		
+		board[5][4] = 1;
+		board[6][5] = 2;
+		board[7][6] = 2;
+		
+		assertEquals("This is an illegal move for normal red",2,move.isMoveLegal(board, 5, 4, 7, 6, 1));
 	}
 
 	@Test
@@ -188,8 +199,112 @@ public class CheckerMoveTest {
 	
 	@Test
 	public void canApplyTheMoveTest(){
+		int[][] board = new int[8][8];
 		
+		board[4][5] = 2;
+		
+		assertEquals("The move cannot be applied",2,move.ApplyMove(board, 4, 5, 5, 5));
+		assertEquals("The move was applied",1,move.ApplyMove(board, 4, 5, 5, 4));
+		
+		board[2][5] = 2;
+		board[3][4] = 1;
+		
+		assertEquals("The move is a capture and there for legal",1,move.ApplyMove(board, 2, 5, 4, 3));
+		assertEquals("The move is illegal due to already existing piece",2,move.ApplyMove(board, 2, 5, 3, 4));
+		
+		board[1][1] = 2;
+		
+		assertEquals("This is legal move, converts piece to a Yellow King",1,move.ApplyMove(board,1,1, 0,0));
+		assertEquals("This is illegal move, converts piece to a Yellow King but moves illegally",2,move.ApplyMove(board,1,1, 0,1));
+		
+		board[1][6] = 1;
+		
+		assertEquals("This is legal move, converts piece to a Yellow King",1,move.ApplyMove(board,1,6, 0,7));
+		assertEquals("This is illegal move, converts piece to a Yellow King but moves illegally",2,move.ApplyMove(board,1,6, 1,7));
 		
 	}
+	
+	@Test
+	public void moveGeneratorTest(){
+		int[][] boardOne = new int[8][8];
+		int[][] boardTwo = new int[8][8];
+		
+		boardOne[2][5] = 2;
+		boardOne[3][4] = 1;
+		
+		
+		Vector<int[]> moveListOne = move.generateMoves(boardOne, 1);
+		
+		int[] testArrayOne = new int[4];
+		int[] testArrayTwo = new int[4];
+		
+		//Tests that the Generated move goes into the capture loop due
+		//to conditional statement
+		testArrayOne[0] = 3;
+		testArrayOne[1] = 4;
+		testArrayOne[2] = 1;
+		testArrayOne[3] = 6;
+		
+		int[] actualArray = moveListOne.firstElement();
+		assertEquals(actualArray[0],testArrayOne[0]);
+		
+		boardTwo[3][2] = 1;
+		boardTwo [2][5] = 2;
+		
+		Vector<int[]> moveListTwo = move.generateMoves(boardTwo, 1);
+		
+		testArrayTwo[0] = 3;
+		testArrayTwo[1] = 2;
+		testArrayTwo[2] = 4;
+		testArrayTwo[3] = 3;
+		
+		
+		assertFalse(moveListTwo.contains(testArrayTwo));
+	}
+	
+	@Test
+	public void areThereNoMoreMovesTest(){
+		int[][] board = new int[8][8];
+		
+		board[0][0] = 2;
+		board[0][1] = 1;
 
+		assertTrue(move.noMovesLeft(board, 2));
+		assertFalse(move.noMovesLeft(board, 1));
+		
+		board[4][5] = 4;
+		
+		assertTrue(move.noMovesLeft(board, 4));
+	}
+	
+	@Test
+	public void moveComputerTest(){
+		
+		int[][] board = new int[8][8];
+		
+		board[5][2] = 1;
+		int[] moveArray = {5,2,6,3};
+		
+		move.moveComputer(board, moveArray);
+		
+		assertFalse("This location is not empty",move.isEmpty(board, 6, 3));
+		
+	}
+	
+	@Test
+	public void forceCaptureTest(){
+		int[][] board = new int[8][8];
+		
+		board[4][3] = 1;
+		board[5][4] = 2;
+		board[5][6] = 2;
+		
+		Vector<int[]> moveList = move.generateMoves(board, 1);
+		int[] moveArray = {4,3,6,5};
+		move.forceCaptures(board,moveArray,moveList,10);
+		
+		int[] moveArrayTwo = moveList.firstElement();
+		
+		assertFalse(moveArrayTwo.equals(moveArray));
+	}
 }
