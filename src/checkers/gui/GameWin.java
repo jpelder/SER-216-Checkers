@@ -10,7 +10,7 @@ public class GameWin extends JDialog{
     Point p;
     JLabel masseage = new JLabel();
     
-    GameWin(String winner, Point p){
+    public GameWin(String winner, Point p){
         this.p = p;
         masseage.setText("          " + winner + " Wins!");
         setupGUI();
@@ -29,4 +29,9 @@ public class GameWin extends JDialog{
         setVisible(true);
         setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
     }
+	
+	public Point getPoint(){
+		return p;
+	}
+
 }

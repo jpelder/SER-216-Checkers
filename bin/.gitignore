@@ -1,4 +1,5 @@
-/images/
-/sounds/
+/.DS_Store
 /checkers/
+/images/
 /junit/
+/sounds/
