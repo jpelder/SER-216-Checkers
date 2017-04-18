@@ -290,7 +290,6 @@ public class CheckerMoveTest {
 		assertFalse("This location is not empty",move.isEmpty(board, 6, 3));
 		
 	}
-	
 	@Test
 	public void forceCaptureTest(){
 		int[][] board = new int[8][8];
