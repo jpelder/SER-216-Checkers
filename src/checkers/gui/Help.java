@@ -16,7 +16,7 @@ public class Help extends JDialog {
     JScrollPane hlp = new JScrollPane();
     JTextArea txt = new JTextArea();
 
-    Help(){
+    public Help(){
         setupGUI();
     }
 
