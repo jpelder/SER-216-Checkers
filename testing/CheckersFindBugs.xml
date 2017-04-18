@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BugCollection version="3.0.1-dev-20150306-5afe4d1" sequence="1" timestamp="1491515375520" analysisTimestamp="1491515252116" release="">
+  <Project projectName="OLDCHECKERS">
+    <Jar>C:\Users\Jeremy\Documents\OLDCHECKERS\bin</Jar>
+    <AuxClasspathEntry>C:\Users\Jeremy\Documents\OLDCHECKERS\bin</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Program Files\Java\jre1.8.0_101\lib\rt.jar</AuxClasspathEntry>
+    <SrcDir>C:\Users\Jeremy\Documents\OLDCHECKERS\src</SrcDir>
+    <WrkDir>C:\Users\Jeremy\workspace\.metadata\.plugins\edu.umd.cs.findbugs.plugin.eclipse</WrkDir>
+    <Cloud id="edu.umd.cs.findbugs.cloud.doNothingCloud" online="false"></Cloud>
+  </Project>
+  <BugInstance type="DE_MIGHT_IGNORE" priority="3" rank="19" abbrev="DE" category="BAD_PRACTICE" first="1">
+    <Class classname="checkers.CheckerFrame">
+      <SourceLine classname="checkers.CheckerFrame" sourcefile="CheckerFrame.java" sourcepath="checkers/CheckerFrame.java"/>
+    </Class>
+    <Method classname="checkers.CheckerFrame" name="&lt;init&gt;" signature="()V" isStatic="false">
+      <SourceLine classname="checkers.CheckerFrame" start="12" end="22" startBytecode="0" endBytecode="165" sourcefile="CheckerFrame.java" sourcepath="checkers/CheckerFrame.java"/>
+    </Method>
+    <Class classname="java.lang.Exception" role="CLASS_EXCEPTION">
+      <SourceLine classname="java.lang.Exception"/>
+    </Class>
+    <SourceLine classname="checkers.CheckerFrame" start="17" end="17" startBytecode="40" endBytecode="40" sourcefile="CheckerFrame.java" sourcepath="checkers/CheckerFrame.java"/>
+    <SourceLine classname="checkers.CheckerFrame" start="17" end="17" startBytecode="40" endBytecode="40" sourcefile="CheckerFrame.java" sourcepath="checkers/CheckerFrame.java"/>
+    <SourceLine classname="checkers.CheckerFrame" start="17" end="17" startBytecode="40" endBytecode="40" sourcefile="CheckerFrame.java" sourcepath="checkers/CheckerFrame.java"/>
+  </BugInstance>
+  <BugInstance type="REC_CATCH_EXCEPTION" priority="3" rank="20" abbrev="REC" category="STYLE" first="1">
+    <Class classname="checkers.CheckerFrame">
+      <SourceLine classname="checkers.CheckerFrame" sourcefile="CheckerFrame.java" sourcepath="checkers/CheckerFrame.java"/>
+    </Class>
+    <Method classname="checkers.CheckerFrame" name="&lt;init&gt;" signature="()V" isStatic="false">
+      <SourceLine classname="checkers.CheckerFrame" start="12" end="22" startBytecode="0" endBytecode="165" sourcefile="CheckerFrame.java" sourcepath="checkers/CheckerFrame.java"/>
+    </Method>
+    <SourceLine classname="checkers.CheckerFrame" start="17" end="17" startBytecode="40" endBytecode="40" sourcefile="CheckerFrame.java" sourcepath="checkers/CheckerFrame.java"/>
+    <SourceLine classname="checkers.CheckerFrame" start="17" end="17" startBytecode="40" endBytecode="40" sourcefile="CheckerFrame.java" sourcepath="checkers/CheckerFrame.java"/>
+  </BugInstance>
+  <BugInstance type="UI_INHERITANCE_UNSAFE_GETRESOURCE" priority="3" rank="19" abbrev="UI" category="BAD_PRACTICE" first="1">
+    <Class classname="checkers.CheckerFrame">
+      <SourceLine classname="checkers.CheckerFrame" sourcefile="CheckerFrame.java" sourcepath="checkers/CheckerFrame.java"/>
+    </Class>
+    <Method classname="checkers.CheckerFrame" name="setupGUI" signature="()V" isStatic="false">
+      <SourceLine classname="checkers.CheckerFrame" start="25" end="47" startBytecode="0" endBytecode="359" sourcefile="CheckerFrame.java" sourcepath="checkers/CheckerFrame.java"/>
+    </Method>
+    <SourceLine classname="checkers.CheckerFrame" start="30" end="30" startBytecode="52" endBytecode="52" sourcefile="CheckerFrame.java" sourcepath="checkers/CheckerFrame.java"/>
+  </BugInstance>
+  <BugInstance type="FE_FLOATING_POINT_EQUALITY" priority="1" rank="15" abbrev="FE" category="STYLE" first="1">
+    <Class classname="checkers.CheckerMove">
+      <SourceLine classname="checkers.CheckerMove" sourcefile="CheckerMove.java" sourcepath="checkers/CheckerMove.java"/>
+    </Class>
+    <Method classname="checkers.CheckerMove" name="noMovesLeft" signature="([[II)Z" isStatic="true">
+      <SourceLine classname="checkers.CheckerMove" start="36" end="57" startBytecode="0" endBytecode="293" sourcefile="CheckerMove.java" sourcepath="checkers/CheckerMove.java"/>
+    </Method>
+    <SourceLine classname="checkers.CheckerMove" start="38" end="38" startBytecode="23" endBytecode="23" sourcefile="CheckerMove.java" sourcepath="checkers/CheckerMove.java"/>
+  </BugInstance>
+  <BugInstance type="ICAST_IDIV_CAST_TO_DOUBLE" priority="2" rank="17" abbrev="ICAST" category="STYLE" first="1">
+    <Class classname="checkers.CheckerMove">
+      <SourceLine classname="checkers.CheckerMove" sourcefile="CheckerMove.java" sourcepath="checkers/CheckerMove.java"/>
+    </Class>
+    <Method classname="checkers.CheckerMove" name="noMovesLeft" signature="([[II)Z" isStatic="true">
+      <SourceLine classname="checkers.CheckerMove" start="36" end="57" startBytecode="0" endBytecode="293" sourcefile="CheckerMove.java" sourcepath="checkers/CheckerMove.java"/>
+    </Method>
+    <SourceLine classname="checkers.CheckerMove" start="38" end="38" startBytecode="21" endBytecode="21" sourcefile="CheckerMove.java" sourcepath="checkers/CheckerMove.java"/>
+    <SourceLine classname="checkers.CheckerMove" start="38" end="38" startBytecode="21" endBytecode="21" sourcefile="CheckerMove.java" sourcepath="checkers/CheckerMove.java"/>
+  </BugInstance>
+  <BugInstance type="IM_AVERAGE_COMPUTATION_COULD_OVERFLOW" priority="2" rank="17" abbrev="IM" category="STYLE" first="1">
+    <Class classname="checkers.CheckerMove">
+      <SourceLine classname="checkers.CheckerMove" sourcefile="CheckerMove.java" sourcepath="checkers/CheckerMove.java"/>
+    </Class>
+    <Method classname="checkers.CheckerMove" name="ApplyMove" signature="([[IIIII)I" isStatic="true">
+      <SourceLine classname="checkers.CheckerMove" start="69" end="102" startBytecode="0" endBytecode="333" sourcefile="CheckerMove.java" sourcepath="checkers/CheckerMove.java"/>
+    </Method>
+    <SourceLine classname="checkers.CheckerMove" start="79" end="79" startBytecode="60" endBytecode="60" sourcefile="CheckerMove.java" sourcepath="checkers/CheckerMove.java"/>
+    <SourceLine classname="checkers.CheckerMove" start="79" end="79" startBytecode="60" endBytecode="60" sourcefile="CheckerMove.java" sourcepath="checkers/CheckerMove.java"/>
+  </BugInstance>
+  <BugInstance type="IM_AVERAGE_COMPUTATION_COULD_OVERFLOW" priority="2" rank="17" abbrev="IM" category="STYLE" first="1">
+    <Class classname="checkers.CheckerMove">
+      <SourceLine classname="checkers.CheckerMove" sourcefile="CheckerMove.java" sourcepath="checkers/CheckerMove.java"/>
+    </Class>
+    <Method classname="checkers.CheckerMove" name="isMoveLegal" signature="([[IIIIII)I" isStatic="true">
+      <SourceLine classname="checkers.CheckerMove" start="115" end="202" startBytecode="0" endBytecode="853" sourcefile="CheckerMove.java" sourcepath="checkers/CheckerMove.java"/>
+    </Method>
+    <SourceLine classname="checkers.CheckerMove" start="169" end="169" startBytecode="297" endBytecode="297" sourcefile="CheckerMove.java" sourcepath="checkers/CheckerMove.java"/>
+    <SourceLine classname="checkers.CheckerMove" start="169" end="169" startBytecode="297" endBytecode="297" sourcefile="CheckerMove.java" sourcepath="checkers/CheckerMove.java"/>
+  </BugInstance>
+  <BugInstance type="NM_METHOD_NAMING_CONVENTION" priority="3" rank="19" abbrev="Nm" category="BAD_PRACTICE" first="1">
+    <Class classname="checkers.CheckerMove">
+      <SourceLine classname="checkers.CheckerMove" sourcefile="CheckerMove.java" sourcepath="checkers/CheckerMove.java"/>
+    </Class>
+    <Method classname="checkers.CheckerMove" name="ApplyMove" signature="([[IIIII)I" isStatic="true">
+      <SourceLine classname="checkers.CheckerMove" start="69" end="102" startBytecode="0" endBytecode="333" sourcefile="CheckerMove.java" sourcepath="checkers/CheckerMove.java"/>
+    </Method>
+  </BugInstance>
+  <BugInstance type="SF_SWITCH_NO_DEFAULT" priority="2" rank="19" abbrev="SF" category="STYLE" first="1">
+    <Class classname="checkers.CheckerMove">
+      <SourceLine classname="checkers.CheckerMove" sourcefile="CheckerMove.java" sourcepath="checkers/CheckerMove.java"/>
+    </Class>
+    <Method classname="checkers.CheckerMove" name="isMoveLegal" signature="([[IIIIII)I" isStatic="true">
+      <SourceLine classname="checkers.CheckerMove" start="115" end="202" startBytecode="0" endBytecode="853" sourcefile="CheckerMove.java" sourcepath="checkers/CheckerMove.java"/>
+    </Method>
+    <SourceLine classname="checkers.CheckerMove" start="124" end="139" startBytecode="49" endBytecode="216" sourcefile="CheckerMove.java" sourcepath="checkers/CheckerMove.java"/>
+    <SourceLine classname="checkers.CheckerMove" start="124" end="139" startBytecode="49" endBytecode="216" sourcefile="CheckerMove.java" sourcepath="checkers/CheckerMove.java"/>
+  </BugInstance>
+  <BugInstance type="DLS_DEAD_LOCAL_STORE" priority="3" rank="20" abbrev="DLS" category="STYLE" first="1">
+    <Class classname="checkers.Checkers">
+      <SourceLine classname="checkers.Checkers" sourcefile="Checkers.java" sourcepath="checkers/Checkers.java"/>
+    </Class>
+    <Method classname="checkers.Checkers" name="play" signature="()V" isStatic="false">
+      <SourceLine classname="checkers.Checkers" start="382" end="460" startBytecode="0" endBytecode="248" sourcefile="Checkers.java" sourcepath="checkers/Checkers.java"/>
+    </Method>
+    <LocalVariable name="tempScore" register="1" pc="227" role="LOCAL_VARIABLE_NAMED"/>
+    <SourceLine classname="checkers.Checkers" start="409" end="409" startBytecode="226" endBytecode="226" sourcefile="Checkers.java" sourcepath="checkers/Checkers.java"/>
+    <SourceLine classname="checkers.Checkers" start="409" end="409" startBytecode="226" endBytecode="226" sourcefile="Checkers.java" sourcepath="checkers/Checkers.java"/>
+    <Property name="edu.umd.cs.findbugs.detect.DeadLocalStoreProperty.BASE_VALUE" value="true"/>
+    <Property name="edu.umd.cs.findbugs.detect.DeadLocalStoreProperty.LOCAL_NAME" value="tempScore"/>
+    <Property name="edu.umd.cs.findbugs.detect.DeadLocalStoreProperty.MANY_STORES" value="true"/>
+    <Property name="edu.umd.cs.findbugs.detect.DeadLocalStoreProperty.METHOD_RESULT" value="true"/>
+  </BugInstance>
+  <BugInstance type="FE_FLOATING_POINT_EQUALITY" priority="1" rank="15" abbrev="FE" category="STYLE" first="1">
+    <Class classname="checkers.Checkers">
+      <SourceLine classname="checkers.Checkers" sourcefile="Checkers.java" sourcepath="checkers/Checkers.java"/>
+    </Class>
+    <Method classname="checkers.Checkers" name="mousePressed" signature="(Ljava/awt/event/MouseEvent;)V" isStatic="false">
+      <SourceLine classname="checkers.Checkers" start="471" end="526" startBytecode="0" endBytecode="746" sourcefile="Checkers.java" sourcepath="checkers/Checkers.java"/>
+    </Method>
+    <SourceLine classname="checkers.Checkers" start="498" end="498" startBytecode="274" endBytecode="274" sourcefile="Checkers.java" sourcepath="checkers/Checkers.java"/>
+  </BugInstance>
+  <BugInstance type="ICAST_IDIV_CAST_TO_DOUBLE" priority="2" rank="17" abbrev="ICAST" category="STYLE" first="1">
+    <Class classname="checkers.Checkers">
+      <SourceLine classname="checkers.Checkers" sourcefile="Checkers.java" sourcepath="checkers/Checkers.java"/>
+    </Class>
+    <Method classname="checkers.Checkers" name="mousePressed" signature="(Ljava/awt/event/MouseEvent;)V" isStatic="false">
+      <SourceLine classname="checkers.Checkers" start="471" end="526" startBytecode="0" endBytecode="746" sourcefile="Checkers.java" sourcepath="checkers/Checkers.java"/>
+    </Method>
+    <SourceLine classname="checkers.Checkers" start="498" end="498" startBytecode="272" endBytecode="272" sourcefile="Checkers.java" sourcepath="checkers/Checkers.java"/>
+    <SourceLine classname="checkers.Checkers" start="498" end="498" startBytecode="272" endBytecode="272" sourcefile="Checkers.java" sourcepath="checkers/Checkers.java"/>
+  </BugInstance>
+  <BugInstance type="IM_BAD_CHECK_FOR_ODD" priority="2" rank="13" abbrev="IM" category="STYLE" first="1">
+    <Class classname="checkers.Checkers">
+      <SourceLine classname="checkers.Checkers" sourcefile="Checkers.java" sourcepath="checkers/Checkers.java"/>
+    </Class>
+    <Method classname="checkers.Checkers" name="isPossibleSquare" signature="(II)Z" isStatic="false">
+      <SourceLine classname="checkers.Checkers" start="463" end="463" startBytecode="0" endBytecode="83" sourcefile="Checkers.java" sourcepath="checkers/Checkers.java"/>
+    </Method>
+    <SourceLine classname="checkers.Checkers" start="463" end="463" startBytecode="6" endBytecode="6" sourcefile="Checkers.java" sourcepath="checkers/Checkers.java"/>
+    <SourceLine classname="checkers.Checkers" start="463" end="463" startBytecode="6" endBytecode="6" sourcefile="Checkers.java" sourcepath="checkers/Checkers.java"/>
+  </BugInstance>
+  <BugInstance type="SF_SWITCH_NO_DEFAULT" priority="2" rank="19" abbrev="SF" category="STYLE" first="1">
+    <Class classname="checkers.Checkers">
+      <SourceLine classname="checkers.Checkers" sourcefile="Checkers.java" sourcepath="checkers/Checkers.java"/>
+    </Class>
+    <Method classname="checkers.Checkers" name="mousePressed" signature="(Ljava/awt/event/MouseEvent;)V" isStatic="false">
+      <SourceLine classname="checkers.Checkers" start="471" end="526" startBytecode="0" endBytecode="746" sourcefile="Checkers.java" sourcepath="checkers/Checkers.java"/>
+    </Method>
+    <SourceLine classname="checkers.Checkers" start="503" end="522" startBytecode="320" endBytecode="468" sourcefile="Checkers.java" sourcepath="checkers/Checkers.java"/>
+    <SourceLine classname="checkers.Checkers" start="503" end="522" startBytecode="320" endBytecode="468" sourcefile="Checkers.java" sourcepath="checkers/Checkers.java"/>
+  </BugInstance>
+  <BugInstance type="ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD" priority="1" rank="15" abbrev="ST" category="STYLE" first="1">
+    <Class classname="checkers.Checkers">
+      <SourceLine classname="checkers.Checkers" sourcefile="Checkers.java" sourcepath="checkers/Checkers.java"/>
+    </Class>
+    <Method classname="checkers.Checkers" name="actionPerformed" signature="(Ljava/awt/event/ActionEvent;)V" isStatic="false">
+      <SourceLine classname="checkers.Checkers" start="229" end="285" startBytecode="0" endBytecode="688" sourcefile="Checkers.java" sourcepath="checkers/Checkers.java"/>
+    </Method>
+    <Field classname="checkers.Checkers" name="silent" signature="Z" isStatic="true">
+      <SourceLine classname="checkers.Checkers" sourcefile="Checkers.java" sourcepath="checkers/Checkers.java"/>
+    </Field>
+    <SourceLine classname="checkers.Checkers" start="277" end="277" startBytecode="397" endBytecode="397" sourcefile="Checkers.java" sourcepath="checkers/Checkers.java"/>
+    <SourceLine classname="checkers.Checkers" start="277" end="277" startBytecode="397" endBytecode="397" sourcefile="Checkers.java" sourcepath="checkers/Checkers.java"/>
+  </BugInstance>
+  <BugInstance type="UI_INHERITANCE_UNSAFE_GETRESOURCE" priority="3" rank="19" abbrev="UI" category="BAD_PRACTICE" first="1">
+    <Class classname="checkers.Checkers">
+      <SourceLine classname="checkers.Checkers" sourcefile="Checkers.java" sourcepath="checkers/Checkers.java"/>
+    </Class>
+    <Method classname="checkers.Checkers" name="&lt;init&gt;" signature="()V" isStatic="false">
+      <SourceLine classname="checkers.Checkers" start="86" end="88" startBytecode="0" endBytecode="805" sourcefile="Checkers.java" sourcepath="checkers/Checkers.java"/>
+    </Method>
+    <SourceLine classname="checkers.Checkers" start="12" end="12" startBytecode="32" endBytecode="32" sourcefile="Checkers.java" sourcepath="checkers/Checkers.java"/>
+  </BugInstance>
+  <BugInstance type="DM_NEXTINT_VIA_NEXTDOUBLE" priority="2" rank="18" abbrev="Dm" category="PERFORMANCE" first="1">
+    <Class classname="checkers.GameEngine">
+      <SourceLine classname="checkers.GameEngine" sourcefile="GameEngine.java" sourcepath="checkers/GameEngine.java"/>
+    </Class>
+    <Method classname="checkers.GameEngine" name="eval" signature="([[I)I" isStatic="true">
+      <SourceLine classname="checkers.GameEngine" start="33" end="68" startBytecode="0" endBytecode="390" sourcefile="GameEngine.java" sourcepath="checkers/GameEngine.java"/>
+    </Method>
+    <SourceLine classname="checkers.GameEngine" start="66" end="66" startBytecode="175" endBytecode="175" sourcefile="GameEngine.java" sourcepath="checkers/GameEngine.java"/>
+    <SourceLine classname="checkers.GameEngine" start="66" end="66" startBytecode="175" endBytecode="175" sourcefile="GameEngine.java" sourcepath="checkers/GameEngine.java"/>
+  </BugInstance>
+  <BugInstance type="NM_METHOD_NAMING_CONVENTION" priority="2" rank="16" abbrev="Nm" category="BAD_PRACTICE" first="1">
+    <Class classname="checkers.GameEngine">
+      <SourceLine classname="checkers.GameEngine" sourcefile="GameEngine.java" sourcepath="checkers/GameEngine.java"/>
+    </Class>
+    <Method classname="checkers.GameEngine" name="MinMax" signature="([[III[II[I)I" isStatic="true">
+      <SourceLine classname="checkers.GameEngine" start="80" end="80" startBytecode="0" endBytecode="107" sourcefile="GameEngine.java" sourcepath="checkers/GameEngine.java"/>
+    </Method>
+  </BugInstance>
+  <BugInstance type="NM_METHOD_NAMING_CONVENTION" priority="3" rank="19" abbrev="Nm" category="BAD_PRACTICE" first="1">
+    <Class classname="checkers.GameEngine">
+      <SourceLine classname="checkers.GameEngine" sourcefile="GameEngine.java" sourcepath="checkers/GameEngine.java"/>
+    </Class>
+    <Method classname="checkers.GameEngine" name="MinMax" signature="([[III[II[III)I" isStatic="true">
+      <SourceLine classname="checkers.GameEngine" start="87" end="156" startBytecode="0" endBytecode="778" sourcefile="GameEngine.java" sourcepath="checkers/GameEngine.java"/>
+    </Method>
+  </BugInstance>
+  <BugInstance type="SF_SWITCH_NO_DEFAULT" priority="2" rank="19" abbrev="SF" category="STYLE" first="1">
+    <Class classname="checkers.GameEngine">
+      <SourceLine classname="checkers.GameEngine" sourcefile="GameEngine.java" sourcepath="checkers/GameEngine.java"/>
+    </Class>
+    <Method classname="checkers.GameEngine" name="MinMax" signature="([[III[II[III)I" isStatic="true">
+      <SourceLine classname="checkers.GameEngine" start="87" end="156" startBytecode="0" endBytecode="778" sourcefile="GameEngine.java" sourcepath="checkers/GameEngine.java"/>
+    </Method>
+    <SourceLine classname="checkers.GameEngine" start="102" end="118" startBytecode="47" endBytecode="107" sourcefile="GameEngine.java" sourcepath="checkers/GameEngine.java"/>
+    <SourceLine classname="checkers.GameEngine" start="102" end="118" startBytecode="47" endBytecode="107" sourcefile="GameEngine.java" sourcepath="checkers/GameEngine.java"/>
+  </BugInstance>
+  <BugInstance type="DM_DEFAULT_ENCODING" priority="1" rank="19" abbrev="Dm" category="I18N" first="1">
+    <Class classname="checkers.Help">
+      <SourceLine classname="checkers.Help" sourcefile="Help.java" sourcepath="checkers/Help.java"/>
+    </Class>
+    <Method classname="checkers.Help" name="addText" signature="()V" isStatic="false">
+      <SourceLine classname="checkers.Help" start="38" end="48" startBytecode="0" endBytecode="267" sourcefile="Help.java" sourcepath="checkers/Help.java"/>
+    </Method>
+    <Method classname="java.io.FileReader" name="&lt;init&gt;" signature="(Ljava/io/File;)V" isStatic="false" role="METHOD_CALLED">
+      <SourceLine classname="java.io.FileReader"/>
+    </Method>
+    <SourceLine classname="checkers.Help" start="38" end="38" startBytecode="17" endBytecode="17" sourcefile="Help.java" sourcepath="checkers/Help.java"/>
+    <SourceLine classname="checkers.Help" start="38" end="38" startBytecode="17" endBytecode="17" sourcefile="Help.java" sourcepath="checkers/Help.java"/>
+  </BugInstance>
+  <BugInstance type="OS_OPEN_STREAM" priority="2" rank="16" abbrev="OS" category="BAD_PRACTICE" first="1">
+    <Class classname="checkers.Help">
+      <SourceLine classname="checkers.Help" sourcefile="Help.java" sourcepath="checkers/Help.java"/>
+    </Class>
+    <Method classname="checkers.Help" name="addText" signature="()V" isStatic="false">
+      <SourceLine classname="checkers.Help" start="38" end="48" startBytecode="0" endBytecode="36" sourcefile="Help.java" sourcepath="checkers/Help.java"/>
+    </Method>
+    <Type descriptor="Ljava/io/Reader;" role="TYPE_CLOSEIT">
+      <SourceLine classname="java.io.Reader"/>
+    </Type>
+    <SourceLine classname="checkers.Help" start="38" end="38" startBytecode="0" endBytecode="0" sourcefile="Help.java" sourcepath="checkers/Help.java"/>
+    <SourceLine classname="checkers.Help" start="38" end="38" startBytecode="0" endBytecode="0" sourcefile="Help.java" sourcepath="checkers/Help.java"/>
+  </BugInstance>
+  <BugInstance type="SS_SHOULD_BE_STATIC" priority="2" rank="18" abbrev="SS" category="PERFORMANCE" first="1">
+    <Class classname="checkers.PlaySound">
+      <SourceLine classname="checkers.PlaySound" sourcefile="PlaySound.java" sourcepath="checkers/PlaySound.java"/>
+    </Class>
+    <Field classname="checkers.PlaySound" name="EXTERNAL_BUFFER_SIZE" signature="I" isStatic="false">
+      <SourceLine classname="checkers.PlaySound" sourcefile="PlaySound.java" sourcepath="checkers/PlaySound.java"/>
+    </Field>
+    <SourceLine classname="checkers.PlaySound" start="18" end="18" startBytecode="7" endBytecode="7" sourcefile="PlaySound.java" sourcepath="checkers/PlaySound.java"/>
+  </BugInstance>
+  <BugInstance type="UI_INHERITANCE_UNSAFE_GETRESOURCE" priority="3" rank="19" abbrev="UI" category="BAD_PRACTICE" first="1">
+    <Class classname="checkers.StartPanel">
+      <SourceLine classname="checkers.StartPanel" sourcefile="StartPanel.java" sourcepath="checkers/StartPanel.java"/>
+    </Class>
+    <Method classname="checkers.StartPanel" name="paintComponent" signature="(Ljava/awt/Graphics;)V" isStatic="false">
+      <SourceLine classname="checkers.StartPanel" start="19" end="61" startBytecode="0" endBytecode="522" sourcefile="StartPanel.java" sourcepath="checkers/StartPanel.java"/>
+    </Method>
+    <SourceLine classname="checkers.StartPanel" start="41" end="41" startBytecode="218" endBytecode="218" sourcefile="StartPanel.java" sourcepath="checkers/StartPanel.java"/>
+  </BugInstance>
+  <Errors errors="0" missingClasses="0"></Errors>
+  <FindBugsSummary timestamp="Thu, 6 Apr 2017 14:43:24 -0700" total_classes="11" referenced_classes="404" total_bugs="24" total_size="1024" num_packages="1" java_version="1.8.0_101" vm_version="25.101-b13" cpu_seconds="28.62" clock_seconds="210.77" peak_mbytes="477.74" alloc_mbytes="1024.00" gc_seconds="0.15" priority_3="8" priority_2="12" priority_1="4">
+    <PackageStats package="checkers" total_bugs="24" total_types="11" total_size="1024" priority_3="8" priority_2="12" priority_1="4">
+      <ClassStats class="checkers.CheckerFrame" sourceFile="CheckerFrame.java" interface="false" size="43" bugs="3" priority_3="3"/>
+      <ClassStats class="checkers.CheckerMove" sourceFile="CheckerMove.java" interface="false" size="271" bugs="6" priority_3="1" priority_2="4" priority_1="1"/>
+      <ClassStats class="checkers.Checkers" sourceFile="Checkers.java" interface="false" size="460" bugs="7" priority_3="2" priority_2="3" priority_1="2"/>
+      <ClassStats class="checkers.GameEngine" sourceFile="GameEngine.java" interface="false" size="84" bugs="4" priority_3="1" priority_2="3"/>
+      <ClassStats class="checkers.GameWin" sourceFile="GameWin.java" interface="false" size="22" bugs="0"/>
+      <ClassStats class="checkers.Help" sourceFile="Help.java" interface="false" size="35" bugs="2" priority_2="1" priority_1="1"/>
+      <ClassStats class="checkers.IntelliChecker" sourceFile="IntelliChecker.java" interface="false" size="6" bugs="0"/>
+      <ClassStats class="checkers.IntelliChecker$1" sourceFile="IntelliChecker.java" interface="false" size="7" bugs="0"/>
+      <ClassStats class="checkers.PlaySound" sourceFile="PlaySound.java" interface="false" size="48" bugs="1" priority_2="1"/>
+      <ClassStats class="checkers.PlaySound$Position" sourceFile="PlaySound.java" interface="false" size="11" bugs="0"/>
+      <ClassStats class="checkers.StartPanel" sourceFile="StartPanel.java" interface="false" size="37" bugs="1" priority_3="1"/>
+    </PackageStats>
+    <FindBugsProfile>
+      <ClassProfile name="edu.umd.cs.findbugs.SAXBugCollectionHandler" totalMilliseconds="1043" invocations="1" avgMicrosecondsPerInvocation="1043680" maxMicrosecondsPerInvocation="1043680" standardDeviationMircosecondsPerInvocation="0"/>
+    </FindBugsProfile>
+  </FindBugsSummary>
+  <ClassFeatures></ClassFeatures>
+  <History>
+    <AppVersion sequence="0" timestamp="1491515375437" release="" codeSize="0" numClasses="0"/>
+  </History>
+</BugCollection>

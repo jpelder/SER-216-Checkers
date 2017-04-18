@@ -1,7 +1,5 @@
 package checkers.gui;
 
-
-
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
@@ -16,13 +14,16 @@ import java.awt.Cursor;
 import java.awt.Color;
 import java.awt.Font;
 
-
-
+/**
+ * The frame which houses the other GUI components
+ * SER 216 - Group 15 (Edited Initial Code)
+ * Date: 4-18-17
+ */
 public class CheckerFrame extends JFrame implements ActionListener{
     JButton stB = new JButton("Start Game");
     JPanel gmP = new StartPanel();
   
-    CheckerFrame(){
+    public CheckerFrame(){
         try{
             UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
             SwingUtilities.updateComponentTreeUI(this); //changing the appearance of the frame

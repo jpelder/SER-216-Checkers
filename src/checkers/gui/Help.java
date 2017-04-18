@@ -12,6 +12,11 @@ import java.io.FileNotFoundException;
 
 import java.awt.Font;
 
+/**
+ * The Help pop up box
+ * SER 216 - Group 15 (Edited Initial Code)
+ * Date: 4-18-17
+ */
 public class Help extends JDialog {
     JScrollPane hlp = new JScrollPane();
     JTextArea txt = new JTextArea();

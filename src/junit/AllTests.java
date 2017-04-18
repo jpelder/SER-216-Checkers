@@ -12,7 +12,7 @@ import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
-@SuiteClasses({CheckerFrameTest.class, CheckerMoveTest.class, CheckersTest.class, GameEngineTest.class, GameWinTest.class})
+@SuiteClasses({CheckerFrameTest.class, CheckerMoveTest.class, CheckersTest.class, GameEngineTest.class, GameWinTest.class, HelpTest.class})
 public class AllTests {
 	//Dummy Class used for the @RunWith tag
 }

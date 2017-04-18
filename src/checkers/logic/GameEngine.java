@@ -3,7 +3,13 @@ package checkers.logic;
 import checkers.gui.Checkers;
      
 import java.util.Vector;
+
 //game tree implementation
+/**
+ * The core of the game logic for 'checkers'
+ * SER 216 - Group 15 (Edited Initial Code)
+ * Date: 4-18-17
+ */
 public class GameEngine {
 
     private final static int inf = Integer.MAX_VALUE;

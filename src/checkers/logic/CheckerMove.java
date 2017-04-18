@@ -5,6 +5,11 @@ import java.util.Vector;
 import checkers.gui.Checkers;
 
 //class for movements
+/**
+ * Game Logic - specifically the computer player's turn
+ * SER 216 - Group 15 (Edited Initial Code)
+ * Date: 4-18-17
+ */
 public class CheckerMove {
 	public final static int legalMove = 1;
 	public final static int illegalMove = 2;

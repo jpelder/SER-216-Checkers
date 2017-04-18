@@ -26,6 +26,11 @@ import java.awt.Font;
 import java.awt.Cursor;
 import java.awt.Color;
 
+/**
+ * The core screen/GUI component -> utilizes game logic
+ * SER 216 - Group 15 (Edited Initial Code)
+ * Date: 4-18-17
+ */
 public class Checkers extends JPanel implements ActionListener, ItemListener, MouseMotionListener, MouseListener {
 
     Graphics g;

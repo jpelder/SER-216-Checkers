@@ -6,6 +6,11 @@ import javax.swing.JDialog;
 import java.awt.Point;
 import java.awt.Font;
 
+/**
+ * The 'game over' pop up box
+ * SER 216 - Group 15 (Edited Initial Code)
+ * Date: 4-18-17
+ */
 public class GameWin extends JDialog{
     Point p;
     JLabel masseage = new JLabel();

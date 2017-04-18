@@ -7,9 +7,14 @@ import java.awt.Graphics;
 import java.awt.Color;
 import java.awt.Font;
 
+/**
+ * The modeling of the first screen
+ * SER 216 - Group 15 (Edited Initial Code)
+ * Date: 4-18-17
+ */
 public class StartPanel extends JPanel{
     
-    StartPanel(){
+    public StartPanel(){
         setupGUI();
     }
 
