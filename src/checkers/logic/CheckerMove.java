@@ -439,7 +439,7 @@ public class CheckerMove {
     //for an initial capture represented by move, sees if there are more captures
     //until there is none.  If there are multiple capture configurations,
     //add all of them to moves_list
-    private static void forceCaptures(int[][] board, int[] move, Vector moves_list,int inc){
+    public static void forceCaptures(int[][] board, int[] move, Vector moves_list,int inc){
     	int newx = move[2], newy = move[3];
 
     	while(newx>7 || newy>7){
