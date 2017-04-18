@@ -28,7 +28,10 @@ Weight of checkers
   
     For normal checkers there is a weight for position.
     The evaluted are less in edges for kings, so that they tend to be in the middle
-    Small random weight between 0-10 was added to reduce the monotony of the game.
+    (OLD) Small random weight between 0-10 was added to reduce the monotony of the game.
+    
+    I'm removing the random weight cause it makes the games no longer
+    skill based and it can't be tested easily. 
 **********************************************************************************/
 
     public static int eval(int [][] board){
@@ -67,7 +70,7 @@ Weight of checkers
                 }
             }
         }
-        score += (int)(Math.random() * 10);                    //Adds a random weight
+        //score += (int)(Math.random() * 10);                    //Adds a random weight
 
         return score;
     }
@@ -83,7 +86,7 @@ Weight of checkers
           return MinMax(board, depth, maxDepth, move, toMove, counter, inf, -inf);
       }
 
-      private static int MinMax(int[][] board, int depth, int maxDepth,int[] move, int turn, int[] counter, int redBest, int yellowBest){
+      public static int MinMax(int[][] board, int depth, int maxDepth,int[] move, int turn, int[] counter, int redBest, int yellowBest){
         int score, bestScore;
         int[][] newBoard;
         int[] bestMove = new int[4];
@@ -157,7 +160,10 @@ Weight of checkers
     	  int[][] copy = new int[8][8];
 
     	  for(int i = 0; i < 8; i++){
-    		  System.arraycopy(board[i], 0, copy[i], 0, 8);
+    		  for(int j = 0; j < 8; j++){
+    			  //System.arraycopy(board[i], 0, copy[i], 0, 8);
+    			  copy[i][j] = board[i][j];
+    		  }
     	  }
     	  return copy;
       }

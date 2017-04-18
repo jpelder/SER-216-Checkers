@@ -31,14 +31,13 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
     Graphics g;
 
     JTextArea msg = new JTextArea("Select Mode then Start New Game!");
-    ImageIcon redN = new ImageIcon(new ImageIcon(getClass().getResource("/images/red_normal.jpg")).getImage());//red_normal.jpg
-    ImageIcon yellowN = new ImageIcon(new ImageIcon(getClass().getResource("/images/yellow_normal.jpg")).getImage());//yellow_normal.jpg
-    ImageIcon redK = new ImageIcon(new ImageIcon(getClass().getResource("/images/red_king.jpg")).getImage());//red_king.jpg
-    ImageIcon yellowK = new ImageIcon(new ImageIcon(getClass().getResource("/images/yellow_king.jpg")).getImage());//yellow_king.jpg
-    ImageIcon hlp = new ImageIcon(new ImageIcon(getClass().getResource("/images/help.jpg")).getImage());//help.jpg
-    ImageIcon snp = new ImageIcon(new ImageIcon(getClass().getResource("/images/sound.jpg")).getImage());//sound.jpg
-    ImageIcon mup = new ImageIcon(new ImageIcon(getClass().getResource("/images/mute.jpg")).getImage());//mute.jpg
-
+    public ImageIcon redN = new ImageIcon(new ImageIcon(getClass().getResource("../images/red_normal.jpg")).getImage());//red_normal.jpg
+    public ImageIcon yellowN = new ImageIcon(new ImageIcon(getClass().getResource("../images/yellow_normal.jpg")).getImage());//yellow_normal.jpg
+    public ImageIcon redK = new ImageIcon(new ImageIcon(getClass().getResource("../images/red_king.jpg")).getImage());//red_king.jpg
+    public ImageIcon yellowK = new ImageIcon(new ImageIcon(getClass().getResource("../images/yellow_king.jpg")).getImage());//yellow_king.jpg
+    ImageIcon hlp = new ImageIcon(new ImageIcon(getClass().getResource("../images/help.jpg")).getImage());//help.jpg
+    ImageIcon snp = new ImageIcon(new ImageIcon(getClass().getResource("../images/sound.jpg")).getImage());//sound.jpg
+    ImageIcon mup = new ImageIcon(new ImageIcon(getClass().getResource("../images/mute.jpg")).getImage());//mute.jpg
     JButton nwB = new JButton("New Game");
     JButton unB = new JButton("Undo");
     JButton hlpB=new JButton(hlp);
@@ -77,6 +76,7 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
 	public static final int yellowKing = 4;
 	public static final int empty = 0;
 
+
     public int currType;
     public boolean movable;
 
@@ -104,7 +104,7 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
 
     Point winPoint;
 
-    Checkers(){
+    public Checkers(){
         setupGUI();
     }
 
