@@ -22,8 +22,6 @@ public class CheckerMove {
                 if(i * 50 < x && i * 50 + 50 > x && j * 50 < y && j * 50 + 50 > y){
                     index[0] = i;
                     index[1] = j;
-                    System.out.printf("X: %d, Y: %d", x,y);
-                    System.out.printf("Index:%d ,%d\n",index[0],index[1]);
                     return index;
                 }
             }
