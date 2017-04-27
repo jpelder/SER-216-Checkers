@@ -9,6 +9,8 @@ import javax.swing.SwingConstants;
 import javax.swing.ImageIcon;
 
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.awt.event.ActionEvent;
 import java.awt.Cursor;
 import java.awt.Color;
@@ -19,9 +21,13 @@ import java.awt.Font;
  * SER 216 - Group 15 (Edited Initial Code)
  * Date: 4-18-17
  */
-public class CheckerFrame extends JFrame implements ActionListener{
-    JButton stB = new JButton("Start Game");
+public class CheckerFrame extends JFrame implements ActionListener, WindowListener{
+    
+	//static JFrame frame = new CheckerFrame();
+	
+	JButton stB = new JButton("Start Game");
     JPanel gmP = new StartPanel();
+    Checkers gmP2 = new Checkers();
   
     public CheckerFrame(){
         try{
@@ -49,15 +55,15 @@ public class CheckerFrame extends JFrame implements ActionListener{
         stB.addActionListener(this);
         stB.setFocusPainted(false);
         add(stB);
-
         this.setIconImage(new ImageIcon(getClass().getResource("/images/icon.jpg")).getImage());
-
         setSize(508, 520);
         setLocation((int)getToolkit().getScreenSize().getWidth() / 2 - 254, (int)getToolkit().getScreenSize().getHeight() / 2 - 310);
         setResizable(false);
         setVisible(true);
         setTitle("Play Checkers");
+        super.addWindowListener(this);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //this.setState(CheckerFrame.ICONIFIED);
     }
 
 
@@ -65,9 +71,40 @@ public class CheckerFrame extends JFrame implements ActionListener{
         if(e.getActionCommand().equalsIgnoreCase("Start Game")){
             ((JButton)e.getSource()).setText("New Game");
             new PlaySound("/sounds/button.wav").start();
-            gmP = new Checkers();
-            gmP.setBounds(0, 0, 508, 401);
-            this.setContentPane(gmP);
+            gmP2 = new Checkers();
+            gmP2.setBounds(0, 0, 508, 401);
+            this.setContentPane(gmP2);
+            gmP2.paintComponent(gmP2.getGraphics());
         }
     }
+    
+    public void windowClosing( WindowEvent e ) {
+
+    }
+    
+	public void windowOpened( WindowEvent e ) {
+		
+	}
+	
+    public void windowClosed( WindowEvent e ) {
+
+    }
+    
+	public void windowIconified( WindowEvent e ) {
+		
+	}
+
+	public void windowDeiconified( WindowEvent e ) {
+		
+	}
+	
+	public void windowActivated( WindowEvent e ) {
+		gmP2.drawCheckers();
+		gmP2.update();
+	}
+	
+	public void windowDeactivated( WindowEvent e ) {
+
+	}   
+    
 }

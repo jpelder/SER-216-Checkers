@@ -33,7 +33,7 @@ import java.awt.Color;
  */
 public class Checkers extends JPanel implements ActionListener, ItemListener, MouseMotionListener, MouseListener {
 
-    Graphics g;
+    public Graphics g;
 
     JTextArea msg = new JTextArea("Select Mode then Start New Game!");
     public ImageIcon redN = new ImageIcon(new ImageIcon(getClass().getResource("../images/red_normal.jpg")).getImage());//red_normal.jpg
@@ -184,11 +184,9 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
         level.setCursor(new Cursor(Cursor.HAND_CURSOR));
         level.addItemListener(this);
         level.addItem("Easy");
-        level.addItem("Fairly Easy");
         level.addItem("Moderate");
-        level.addItem("Bit Difficult");
-        level.addItem("Tough");
-        level.setSelectedIndex(2);
+        level.addItem("Difficult");
+        level.setSelectedIndex(0);
         level.setBounds(415, 200, 80, 25);
         this.add(level);
 
@@ -231,6 +229,7 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
         snB.setToolTipText("Mute");
 
     }
+    
 
     public void paintComponent(Graphics g)	{
 		super.paintComponent(g);
@@ -370,7 +369,7 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
             play();
 		}
 
-        update(getGraphics());
+        update();
         drawCheckers();
         showStatus();
     }
@@ -405,7 +404,7 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
         }
         toMove = preToMove3;
         drawCheckers();
-        update(g);
+        update();
         drawCheckers();
 
         if(selectedMode == 1){
@@ -443,8 +442,13 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
 		if(this.toMove == yellowNormal && selectedMode==1 && selectedColor.equalsIgnoreCase("yellow")){
 			this.toMove = redNormal;
 			showStatus();
-			tempScore = GameEngine.MinMax(board, 0, difficulty + 2, result, this.toMove, counter);
-
+			if(difficulty == 2){
+				tempScore = GameEngine.MinMax(board, 0, difficulty*3 , result, this.toMove, counter);
+			}
+			else
+			{
+				tempScore = GameEngine.MinMax(board, 0, difficulty+1, result, this.toMove, counter);
+			}
 			if(result[0] == 0 && result[1] == 0){
 				loser = redNormal;
 			}
@@ -463,7 +467,7 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
 		else if(this.toMove == redNormal && selectedMode==1 && selectedColor.equalsIgnoreCase("red")){
 			this.toMove = yellowNormal;
 			showStatus();
-			tempScore = GameEngine.MinMax(board, 0, difficulty + 2, result, this.toMove, counter);
+			tempScore = GameEngine.MinMax(board, 0, difficulty +1, result, this.toMove, counter);
 
 			if(result[0] == 0 && result[1] == 0){
 				loser = yellowNormal;
@@ -498,7 +502,13 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
 	}
 
     private boolean isPossibleSquare(int i, int j) {
-		return (i + j) % 2 == 1;
+		if(i<0){
+			i = 0;
+		}
+		if(j<0){
+			j = 0;
+		}
+    	return (i + j) % 2 == 1;
     }
 
     public void itemStateChanged(ItemEvent e) {          
@@ -524,7 +534,7 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
 				startX = square[0];
 				startY = square[1];
 				tempPrevious = (square[0] * 10 + square[1]);		
-                update(g);
+                update();
                 g = getGraphics();
                 g.setColor(new Color(255, 100, 30)); //ORANGE
                 g.fillRect(50 * square[0], 50 * square[1], 50, 50);                 
@@ -555,7 +565,7 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
 						previousTileRed = tempPrevious;
 					}
 				}
-                update(g);
+                update();
                 drawCheckers();
                 break;
 			case CheckerMove.incompleteMove:
@@ -578,7 +588,7 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
 						previousTileRed = tempPrevious;
 					}
 				}
-                update(g);
+                update();
                 g = getGraphics();
                 g.setColor(new Color(255, 100, 30));
                 g.fillRect(50 * square[0], 50* square[1], 50, 50);
@@ -605,8 +615,8 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
 
     public void mouseExited(MouseEvent e) {
     }
-
-    private void showStatus() {//prints msgs to the statuss bar
+	
+    private void showStatus() {//prints msgs to the status bar
         if(this.toMove == redNormal){
             msg.setText("Red move");
         }
@@ -634,7 +644,7 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
             } 
             catch(InterruptedException e) {
                 e.printStackTrace();
-            }            
+            }  
             new GameWin("Red", this.getLocationOnScreen());
             won = 1;
             undoCount = 0;
@@ -672,14 +682,15 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
    // This clearing followed by drawing causes flicker. CheckerDrag overrides
    // update() to prevent the background from being cleared, which eliminates
    // the flicker.
-    @Override
-    public void update(Graphics g){                                                                                                     
-        paint(g);
+    //@Override
+    public void update(){                                                                                                     
+    	paint(g);
         if(moveYellow == 1){
         	highlightPreviousYellow();
         }
         if(moveRed == 1){
         	highlightPreviousRed();
         }
-    }
+    }    
+    
 }

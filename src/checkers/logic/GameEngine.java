@@ -85,7 +85,7 @@ Weight of checkers
  * returns the best score evaluated MinMax algorithm with alpha beta pruning
  * cut off the tree according to the difficulty level
  * With maximum difficulty it searches upto 6 levels for the best possible solution
- * With minimum difficulty it searches only upto two levels.
+ * With minimum difficulty it searches only up to two levels.
 ****************************************************************************/
 
       public static int MinMax(int[][] board, int depth, int maxDepth, int[] move, int toMove, int[] counter){

@@ -39,7 +39,7 @@ import checkers.gui.StartPanel;
 public class CheckerFrameTest{
 	JButton stB = new JButton();
 	JPanel gmP = new StartPanel();
-	CheckerFrame cF = new CheckerFrame();
+	CheckerFrame cF;
 	AudioInputStream audioInputStream;
 	String filename;
 	PlaySound run = new PlaySound(filename);
