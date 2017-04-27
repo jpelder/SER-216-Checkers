@@ -665,6 +665,7 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
     /**
      * Use the variable 'previousTile' to maintain the location of the last used tile, and highlight it
      * This highlights the yellow tile
+     * This still shows up at the end at the moment.
      */
     public void highlightPreviousRed(){
 	    g = getGraphics();
