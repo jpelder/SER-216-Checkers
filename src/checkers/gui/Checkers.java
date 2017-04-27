@@ -35,7 +35,7 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
 
     public Graphics g;
 
-    JTextArea msg = new JTextArea("Select Mode then Start New Game!");
+    JTextArea msg = new JTextArea("                            Select Mode and Color then Start New Game!!");
     public ImageIcon redN = new ImageIcon(new ImageIcon(getClass().getResource("../resources/images/red_normal.jpg")).getImage());//red_normal.jpg
     public ImageIcon yellowN = new ImageIcon(new ImageIcon(getClass().getResource("../resources/images/yellow_normal.jpg")).getImage());//yellow_normal.jpg
     public ImageIcon redK = new ImageIcon(new ImageIcon(getClass().getResource("../resources/images/red_king.jpg")).getImage());//red_king.jpg
@@ -59,7 +59,7 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
     Help hp = new Help();
 
     JLabel mode = new JLabel("Mode");
-    JLabel col = new JLabel("First");
+    JLabel col = new JLabel("Color");
     JLabel diff = new JLabel("Difficulty Level");
     JLabel rp = new JLabel();
     JLabel rpt = new JLabel("Regular Pieces");
@@ -136,7 +136,7 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
         unB.setFont(new Font("SansSerif", Font.BOLD, 11));
         hlpB.setFont(new Font("SansSerif", Font.PLAIN, 11));
         snB.setFont(new Font("SansSerif", Font.PLAIN, 11));
-        msg.setFont(new Font("SansSerif", Font.PLAIN, 11)); 
+        msg.setFont(new Font("SansSerif", Font.BOLD, 12)); 
 
         nwB.setCursor(new Cursor(Cursor.HAND_CURSOR));
         unB.setCursor(new Cursor(Cursor.HAND_CURSOR));
@@ -467,13 +467,20 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
 		else if(this.toMove == redNormal && selectedMode==1 && selectedColor.equalsIgnoreCase("red")){
 			this.toMove = yellowNormal;
 			showStatus();
-			tempScore = GameEngine.MinMax(board, 0, difficulty +1, result, this.toMove, counter);
-
+			if(difficulty == 2){
+				tempScore = GameEngine.MinMax(board, 0, difficulty*3 , result, this.toMove, counter);
+			}
+			else
+			{
+				tempScore = GameEngine.MinMax(board, 0, difficulty+1, result, this.toMove, counter);
+			}
 			if(result[0] == 0 && result[1] == 0){
 				loser = yellowNormal;
 			}
 			else{
                 CheckerMove.moveComputer(board, result);
+                tempPreviousCP = CheckerMove.previousTile;
+                moveYellow = 1;
                 if(loser == empty){
                     new PlaySound("../resources/sounds/comPlay.wav").start();
                     play();
@@ -551,9 +558,13 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
 				incomplete = false;
 				highlight = false;
 				play();
-				if(selectedMode == 1){
+				if((selectedMode == 1) && (selectedColor.equalsIgnoreCase("yellow"))){
 					moveYellow = 1;
 					previousTileYellow = tempPrevious;
+				}
+				else if((selectedMode == 1) && (selectedColor.equalsIgnoreCase("red"))){
+					moveRed = 1;
+					previousTileRed = tempPrevious;
 				}
 				else{
 					if(toMove == redNormal){
@@ -574,9 +585,13 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
 				// the ending square is now starting square for the next capture
 				startX = square[0];
 				startY = square[1];
-				if(selectedMode == 1){
+				if((selectedMode == 1) && (selectedColor.equalsIgnoreCase("yellow"))){
 					moveYellow = 1;
 					previousTileYellow = tempPrevious;
+				}
+				else if((selectedMode == 1) && (selectedColor.equalsIgnoreCase("red"))){
+					moveRed = 1;
+					previousTileRed = tempPrevious;
 				}
 				else{
 					if(toMove == redNormal){
@@ -618,17 +633,27 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
 	
     private void showStatus() {//prints msgs to the status bar
         if(this.toMove == redNormal){
-            msg.setText("Red move");
+        	if(selectedMode == 1){
+        		msg.setText("                                             Player move (Red)");
+        	}
+        	else{
+        		msg.setText("                                                Red move");
+        	}
             if(selectedMode != 1){
             	new HaveToJump("Red", this.getLocationOnScreen());
             }
         }
         else{
-            msg.setText("Yellow move");
+        	if(selectedMode == 1){
+        		msg.setText("                                             Player move (Yellow)");
+        	}
+        	else{
+        		msg.setText("                                                Yellow move");
+        	}
         }
 
         if(loser == redNormal && won == 0){
-            msg.setText("Yellow Wins!");
+            msg.setText("                                               Yellow Wins!");
             try{
                 Thread.sleep(150);
             } 
@@ -641,7 +666,7 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
             newGame();
         }
         else if(loser == yellowNormal && won == 0){
-            msg.setText("Red Wins!");
+            msg.setText("                                               Red Wins!");
             try{
                 Thread.sleep(150);
             } 
@@ -662,6 +687,9 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
     public void highlightPreviousYellow(){
 	    g = getGraphics();
 	    g.setColor(new Color(0, 200, 30)); //LIGHT GREEN
+	    if((selectedMode == 1) && (selectedColor.equalsIgnoreCase("red"))){
+	    	previousTileYellow = tempPreviousCP;
+	    }
 	    g.fillRect(50 * (previousTileYellow / 10), 50 * (previousTileYellow % 10), 50, 50);
     }
     
@@ -673,7 +701,7 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
     public void highlightPreviousRed(){
 	    g = getGraphics();
 	    g.setColor(new Color(0, 191, 255)); //LIGHT BLUE
-	    if(selectedMode == 1){
+	    if((selectedMode == 1) && (selectedColor.equalsIgnoreCase("yellow"))){
 	    	previousTileRed = tempPreviousCP;
 	    }
 	    g.fillRect(50 * (previousTileRed / 10), 50 * (previousTileRed % 10), 50, 50);

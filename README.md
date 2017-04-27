@@ -15,14 +15,10 @@ CHANGES MADE BEFORE INITIAL PUSH TO GITHUB: Some of the image file names had to 
 
 4/7/17: Edited the Help Box. Added the Undo button - already in the code, just had to uncomment it. Added highlighting to show the previous spots of moved tiles (most recently moved tile).
 
-<<<<<<< HEAD
 4/9/17: Fixed the highlighting to always have the correct colors and work in single player - lets you more easily see where the computer moved from. Changed the formatting of the help box.
 
 4/14/17: Fixed file structure so that gui and logic are separated into different packages. Fixed import statements in all class files so that they are not importing all classes from awt, and swing. Fixed HowToPlay folder as a text file, will try to work and make it formatted properly.
 
 4/16/17: Created a resources source folder that holds both sounds and image files. Fixed PlaySound so that sound is being pulled from resource folder, removed File class declaration in played sound. CheckerMoveTest at 57% code completion.
 
-4/27/17: Have not been updating regularly but many changes implemented since: improved file structure; improved computer difficulty; show when you have to jump.
-=======
-4/9/17: Fixed the highlighting to always have the correct colors and work in single player - lets you more easily see where the computer moved from. Changed the formatting of the help box.
->>>>>>> 1a745459af84445c5b7156658758b384c87064ce
+4/27/17: Have not been updating regularly but many changes implemented since: improved file structure; improved computer difficulty; show when you have to jump. More control over who goes first; but fixing; GUI appearance changes.
