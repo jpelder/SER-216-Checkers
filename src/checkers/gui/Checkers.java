@@ -59,7 +59,7 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
     Help hp = new Help();
 
     JLabel mode = new JLabel("Mode");
-    JLabel col = new JLabel("Colour");
+    JLabel col = new JLabel("First");
     JLabel diff = new JLabel("Difficulty Level");
     JLabel rp = new JLabel();
     JLabel rpt = new JLabel("Regular Pieces");
@@ -146,16 +146,16 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
         unB.addActionListener(this);
         hlpB.addActionListener(this);
         snB.addActionListener(this);
-        nwB.setBounds(405, 70, 95, 25);//297
+        nwB.setBounds(405, 55, 95, 25);//297
         this.add(nwB);
-        unB.setBounds(405, 100, 95, 25);
+        unB.setBounds(405, 85, 95, 25);
         this.add(unB);
         hlpB.setBounds(415, 10, 25, 25);
         this.add(hlpB);
         snB.setBounds(460, 10, 25, 25);
         this.add(snB);
 
-        mode.setBounds(420, 260, 80, 25);
+        mode.setBounds(420, 310, 80, 25);
         this.add(mode);
         p1.addActionListener(this);
         p2.addActionListener(this);
@@ -163,23 +163,23 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
         p2.setCursor(new Cursor(Cursor.HAND_CURSOR));
         players.add(p1);
         players.add(p2);
-        p1.setBounds(415, 290, 80, 25);
-        p2.setBounds(415, 318, 80, 25);
+        p1.setBounds(415, 340, 80, 25);
+        p2.setBounds(415, 368, 80, 25);
         this.add(p1);
         this.add(p2);
 
-        col.setBounds(110, 400, 80, 25);
-        //this.add(col);
+        col.setBounds(420, 200, 80, 25);
+        this.add(col);
         c1.addActionListener(this);
         c2.addActionListener(this);
         c1.setCursor(new Cursor(Cursor.HAND_CURSOR));
         c2.setCursor(new Cursor(Cursor.HAND_CURSOR));
         colors.add(c1);
         colors.add(c2);
-        c1.setBounds(90, 440, 80, 25);
-        c2.setBounds(90, 420, 80, 25);
-        //this.add(c1);
-        //this.add(c2);
+        c1.setBounds(415, 258, 80, 25);
+        c2.setBounds(415, 230, 80, 25);
+        this.add(c1);
+        this.add(c2);
 
         level.setCursor(new Cursor(Cursor.HAND_CURSOR));
         level.addItemListener(this);
@@ -187,11 +187,11 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
         level.addItem("Moderate");
         level.addItem("Difficult");
         level.setSelectedIndex(0);
-        level.setBounds(415, 200, 80, 25);
+        level.setBounds(415, 160, 80, 25);
         this.add(level);
 
         diff.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        diff.setBounds(415, 170, 100, 25);
+        diff.setBounds(415, 130, 100, 25);
         this.add(diff);
 
         this.addMouseListener(this);
