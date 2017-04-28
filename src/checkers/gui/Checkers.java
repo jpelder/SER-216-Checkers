@@ -81,6 +81,7 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
     int difficulty;
     int previousTileYellow, previousTileRed, tempPrevious, tempPreviousCP, moveYellow, moveRed;
     boolean isRandom;
+    public boolean gameEnd = false;
 
     public static final int redNormal = 1;
 	public static final int yellowNormal = 2;
@@ -573,6 +574,10 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
 			}
 			if(result[0] == 0 && result[1] == 0){
 				loser = redNormal;
+				moveRed = 0;
+				moveYellow = 0;
+				gameEnd = true;
+				update();
 			}
 			else{
                 CheckerMove.moveComputer(board, result);
@@ -598,6 +603,10 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
 			}
 			if(result[0] == 0 && result[1] == 0){
 				loser = yellowNormal;
+				moveRed=0;
+				moveYellow=0;
+				gameEnd = true;
+				update();
 			}
 			else{
                 CheckerMove.moveComputer(board, result);
@@ -622,9 +631,17 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
 		if(CheckerMove.noMovesLeft(board, this.toMove)) {
 			if(this.toMove == redNormal){
 				loser = redNormal;
+				moveRed=0;
+				moveYellow=0;
+				gameEnd = true;
+				update();
 			}
 			else{
 				loser = yellowNormal;
+				moveRed=0;
+				moveYellow=0;
+				gameEnd = true;
+				update();
 			}
 		}
         showStatus();
@@ -668,6 +685,7 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
                 g.setColor(new Color(255, 100, 30)); //ORANGE
                 g.fillRect(50 * square[0], 50 * square[1], 50, 50);                 
                 drawCheckers();
+                gameEnd = false;
                 new PlaySound("../resources/sounds/clickChecker.wav").start();
             }
 		}
@@ -807,12 +825,21 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
      * This highlights the yellow tile
      */
     public void highlightPreviousYellow(){
-	    g = getGraphics();
-	    g.setColor(new Color(0, 200, 30)); //LIGHT GREEN
-	    if((selectedMode == 1) && (selectedColor.equalsIgnoreCase("red"))){
-	    	previousTileYellow = tempPreviousCP;
-	    }
-	    g.fillRect(50 * (previousTileYellow / 10), 50 * (previousTileYellow % 10), 50, 50);
+    	if(gameEnd){
+        	g = getGraphics();
+        	g.setColor(new Color(240, 240, 240)); //White
+		    g.fillRect(50 * (previousTileYellow / 10), 50 * (previousTileYellow % 10), 50, 50);
+		    drawCheckers();
+        }
+        else{
+	    	g = getGraphics();
+		    g.setColor(new Color(0, 200, 30)); //LIGHT GREEN
+		    if((selectedMode == 1) && (selectedColor.equalsIgnoreCase("red"))){
+		    	previousTileYellow = tempPreviousCP;
+		    }
+		    g.fillRect(50 * (previousTileYellow / 10), 50 * (previousTileYellow % 10), 50, 50);
+		    drawCheckers();
+        }
     }
     
     /**
@@ -821,12 +848,21 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
      * This still shows up at the end at the moment.
      */
     public void highlightPreviousRed(){
-	    g = getGraphics();
-	    g.setColor(new Color(0, 191, 255)); //LIGHT BLUE
-	    if((selectedMode == 1) && (selectedColor.equalsIgnoreCase("yellow"))){
-	    	previousTileRed = tempPreviousCP;
-	    }
-	    g.fillRect(50 * (previousTileRed / 10), 50 * (previousTileRed % 10), 50, 50);
+    	if(gameEnd){
+        	g = getGraphics();
+        	g.setColor(new Color(240, 240, 240)); //White
+		    g.fillRect(50 * (previousTileRed / 10), 50 * (previousTileRed % 10), 50, 50);
+		    drawCheckers();
+        }
+        else{
+		    g = getGraphics();
+		    g.setColor(new Color(0, 191, 255)); //LIGHT BLUE
+		    if((selectedMode == 1) && (selectedColor.equalsIgnoreCase("yellow"))){
+		    	previousTileRed = tempPreviousCP;
+		    }
+		    g.fillRect(50 * (previousTileRed / 10), 50 * (previousTileRed % 10), 50, 50);
+		    drawCheckers();
+        }
     }
     
    // The AWT invokes the update() method in response to the repaint() method
