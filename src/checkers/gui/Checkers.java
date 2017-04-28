@@ -66,7 +66,7 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
     JLabel mode = new JLabel("Mode");
     JLabel col = new JLabel("Color");
     JLabel diff = new JLabel("Difficulty Level");
-    JLabel rndm = new JLabel("Random");
+    JLabel rndm = new JLabel("First to Play");
     JLabel rp = new JLabel();
     JLabel rpt = new JLabel("Regular Pieces");
     JLabel bp = new JLabel();
