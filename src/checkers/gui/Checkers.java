@@ -351,7 +351,10 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
 			}
 		}
 
-        toMove = yellowNormal;
+        //Generates a random integer value, 1 or 2 to determine who goes first
+        //Due to the nature of how red pieces move, player will be able to determine
+        //if red piece has moved by highlighted previous square
+        int random = (Math.random() <= 0.5) ? 1:2;
 
         for(int i = 0; i < 8; i++){
             System.arraycopy(board[i], 0, preBoard1[i], 0, 8); //for undo
@@ -360,11 +363,11 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
             preToMove3 = preToMove2 = preToMove1 = toMove;
         }
 
-        if (selectedMode == 1 && selectedColor.equalsIgnoreCase("yellow")){
-            this.toMove = redNormal;
+        if (selectedMode == 1 && selectedColor.equalsIgnoreCase("yellow") && random == 2){
+            this.toMove = yellowNormal;
             play();
 		}
-		else if (selectedMode == 1 && selectedColor.equalsIgnoreCase("red")){
+		else if (selectedMode == 1 && selectedColor.equalsIgnoreCase("red") && random == 1){
            this.toMove = redNormal;
             play();
 		}
