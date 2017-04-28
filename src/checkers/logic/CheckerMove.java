@@ -195,6 +195,38 @@ public class CheckerMove {
     	}
     	return illegalMove; //if the situation is not one of these it should be illegal.
     }
+    
+    public static boolean hasToCapture(int[][] board, int srtI, int srtJ, int endI, int endJ, int turn){
+    	int piece = board[srtI][srtJ];
+    	if(Math.abs(srtI - endI) == 1){
+    		// first see if any captures are possible
+    		switch (piece){
+    		case Checkers.redNormal:
+    		case Checkers.redKing:
+    			for(int i = 0; i < 8; i++){
+    				for(int j = 0; j < 8; j++){
+    					if((board[i][j] == Checkers.redNormal || board[i][j] == Checkers.redKing) && canCapture(board,i,j)){
+    						return true;
+    					}
+    				}
+    			}
+    			break;
+    		case Checkers.yellowNormal:
+    		case Checkers.yellowKing:
+    			for(int i = 0; i < 8; i++){
+    				for(int j = 0; j < 8; j++){
+    					if((board[i][j] == Checkers.yellowNormal || board[i][j] == Checkers.yellowKing) && canCapture(board,i,j)){
+    						return true;
+    					}
+    				}
+    			}
+    			break;
+    		}
+    		}
+    		return false;
+    	}
+    
+    
 
     public static int isWalkLegal(int[][] board,int srtI,int srtJ,int endI,int endJ){
     	if(!(inRange(srtI,srtJ) && inRange(endI,endJ) ) ){

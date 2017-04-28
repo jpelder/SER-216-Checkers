@@ -7,9 +7,9 @@ public class HaveToJump extends JDialog{
     Point p;
     JLabel message = new JLabel();
     
-    HaveToJump(String piece, Point p){
+    HaveToJump(Point p){
         this.p = p;
-        message.setText(" 			" + piece + " has to jump!");
+        message.setText("You must JUMP!!!");
         setupGUI();
 	}
 

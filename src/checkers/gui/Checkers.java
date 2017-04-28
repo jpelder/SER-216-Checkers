@@ -123,7 +123,6 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
 
     private void setupGUI(){
         setLayout(null);
-
         nwB.setFocusPainted(false);
         unB.setFocusPainted(false);
         c1.setFocusPainted(false);
@@ -134,7 +133,6 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
         randomed.setFocusPainted(false);
         hlpB.setFocusPainted(false);
         snB.setFocusPainted(false);
-
         diff.setFont(new Font("SansSerif", Font.PLAIN, 11));
         col.setFont(new Font("SansSerif", Font.BOLD, 11));
         mode.setFont(new Font("SansSerif", Font.PLAIN, 11));
@@ -693,6 +691,9 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
 			endX = square[0];
 			endY = square[1];
 			int status = CheckerMove.ApplyMove(board, startX, startY, endX, endY);
+			if (CheckerMove.hasToCapture(board, startX, startY, endX, endY, toMove)){				
+				new HaveToJump(this.getLocationOnScreen());
+			}
 			switch (status){
 			case CheckerMove.legalMove:
 				incomplete = false;
