@@ -57,7 +57,7 @@ public class StartPanel extends JPanel{
         g.drawString("Wesley Davis", 220, 260);
         g.drawString("Pedro Robles", 220, 280);
         ////////////////////////////////////////////////////////////////////////
-        g.drawImage(new ImageIcon(getClass().getResource("../resources/images/checkersIcon.jpg")).getImage(), 350, 280, this);//checkersIcon.jpg
+        g.drawImage(new ImageIcon(getClass().getResource("/checkers/resources/images/checkersIcon.jpg")).getImage(), 350, 280, this);//checkersIcon.jpg
 
 
         g.setColor(new Color(0, 0, 0));

@@ -38,7 +38,7 @@ public class CheckerFrame extends JFrame implements ActionListener, WindowListen
            //no need to handle exception as it only affect the appearance
         }
         setupGUI();
-        new PlaySound("../resources/sounds/Start.wav").start();
+        new PlaySound("/checkers/resources/sounds/Start.wav").start();
     }
 
     private void setupGUI() {
@@ -47,7 +47,7 @@ public class CheckerFrame extends JFrame implements ActionListener, WindowListen
         //gmP.imageUpdate(ne, WIDTH, WIDTH, WIDTH, WIDTH, WIDTH
         add(gmP);
         stB.setHorizontalAlignment(SwingConstants.LEADING);
-        stB.setIcon(new ImageIcon(getClass().getResource("../resources/images/checkersIcon.jpg")));
+        stB.setIcon(new ImageIcon(getClass().getResource("/checkers/resources/images/checkersIcon.jpg")));
         stB.setBackground(Color.LIGHT_GRAY);
         stB.setCursor(new Cursor(Cursor.HAND_CURSOR));
         stB.setBounds(130, 415, 240, 60);
@@ -55,7 +55,7 @@ public class CheckerFrame extends JFrame implements ActionListener, WindowListen
         stB.addActionListener(this);
         stB.setFocusPainted(false);
         add(stB);
-        this.setIconImage(new ImageIcon(getClass().getResource("../resources/images/icon.jpg")).getImage());
+        this.setIconImage(new ImageIcon(getClass().getResource("/checkers/resources/images/icon.jpg")).getImage());
         setSize(508, 520);
         setLocation((int)getToolkit().getScreenSize().getWidth() / 2 - 254, (int)getToolkit().getScreenSize().getHeight() / 2 - 310);
         setResizable(false);
@@ -70,7 +70,7 @@ public class CheckerFrame extends JFrame implements ActionListener, WindowListen
     public void actionPerformed(ActionEvent e) {
         if(e.getActionCommand().equalsIgnoreCase("Start Game")){
             ((JButton)e.getSource()).setText("New Game");
-            new PlaySound("../resources/sounds/button.wav").start();
+            new PlaySound("/checkers/resources/sounds/button.wav").start();
             gmP2 = new Checkers();
             gmP2.setBounds(0, 0, 508, 401);
             this.setContentPane(gmP2);

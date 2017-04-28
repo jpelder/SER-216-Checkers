@@ -9,6 +9,8 @@ import java.io.FileReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 import java.awt.Font;
 
@@ -48,17 +50,14 @@ public class Help extends JDialog {
     private void addText() {
         String str;
         try{
-            BufferedReader b = new BufferedReader(new FileReader(new File("HowToPlay.txt")));
-            try{
-                while((str = b.readLine()) != null)
-                    txt.append(str + "\n");
-            } 
-            catch(IOException e) {
-                e.printStackTrace();
+        	InputStream is = getClass().getResourceAsStream("HowToPlay.txt");
+        	InputStreamReader isr = new InputStreamReader(is);
+            BufferedReader b = new BufferedReader(isr);
+            while((str = b.readLine()) != null){
+                txt.append(str + "\n");
             }
-        }
-        catch(FileNotFoundException e) {
-            e.printStackTrace();
+        }catch(IOException ioe){
+        	System.err.println("Error: " + ioe.getMessage());
         }
     }
 }

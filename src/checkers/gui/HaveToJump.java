@@ -14,7 +14,7 @@ public class HaveToJump extends JDialog{
 	}
 
 	private void setupGUI(){
-		new PlaySound("../resources/sounds/error.wav").start();
+		new PlaySound("/checkers/resources/sounds/error.wav").start();
         message.setFont(new Font("dialog", Font.BOLD, 16));
         add(message);
 

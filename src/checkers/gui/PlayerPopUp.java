@@ -18,7 +18,7 @@ public class PlayerPopUp extends JDialog {
 	}
 	
 	private void setupGUI(){
-		new PlaySound("../resources/sounds/option.wav");
+		new PlaySound("/checkers/resources/sounds/option.wav");
 		message.setFont(new Font("dialog", Font.BOLD, 16));
 		add(message);
 		

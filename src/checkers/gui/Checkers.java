@@ -36,13 +36,13 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
     public Graphics g;
 
     JTextArea msg = new JTextArea("                            Select Mode and Color then Start New Game!!");
-    public ImageIcon redN = new ImageIcon(new ImageIcon(getClass().getResource("../resources/images/red_normal.jpg")).getImage());//red_normal.jpg
-    public ImageIcon yellowN = new ImageIcon(new ImageIcon(getClass().getResource("../resources/images/yellow_normal.jpg")).getImage());//yellow_normal.jpg
-    public ImageIcon redK = new ImageIcon(new ImageIcon(getClass().getResource("../resources/images/red_king.jpg")).getImage());//red_king.jpg
-    public ImageIcon yellowK = new ImageIcon(new ImageIcon(getClass().getResource("../resources/images/yellow_king.jpg")).getImage());//yellow_king.jpg
-    ImageIcon hlp = new ImageIcon(new ImageIcon(getClass().getResource("../resources/images/help.jpg")).getImage());//help.jpg
-    ImageIcon snp = new ImageIcon(new ImageIcon(getClass().getResource("../resources/images/sound.jpg")).getImage());//sound.jpg
-    ImageIcon mup = new ImageIcon(new ImageIcon(getClass().getResource("../resources/images/mute.jpg")).getImage());//mute.jpg
+    public ImageIcon redN = new ImageIcon(new ImageIcon(getClass().getResource("/checkers/resources/images/red_normal.jpg")).getImage());//red_normal.jpg
+    public ImageIcon yellowN = new ImageIcon(new ImageIcon(getClass().getResource("/checkers/resources/images/yellow_normal.jpg")).getImage());//yellow_normal.jpg
+    public ImageIcon redK = new ImageIcon(new ImageIcon(getClass().getResource("/checkers/resources/images/red_king.jpg")).getImage());//red_king.jpg
+    public ImageIcon yellowK = new ImageIcon(new ImageIcon(getClass().getResource("/checkers/resources/images/yellow_king.jpg")).getImage());//yellow_king.jpg
+    ImageIcon hlp = new ImageIcon(new ImageIcon(getClass().getResource("/checkers/resources/images/help.jpg")).getImage());//help.jpg
+    ImageIcon snp = new ImageIcon(new ImageIcon(getClass().getResource("/checkers/resources/images/sound.jpg")).getImage());//sound.jpg
+    ImageIcon mup = new ImageIcon(new ImageIcon(getClass().getResource("/checkers/resources/images/mute.jpg")).getImage());//mute.jpg
     JButton nwB = new JButton("New Game");
     JButton unB = new JButton("Undo");
     JButton hlpB=new JButton(hlp);
@@ -291,7 +291,7 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
 
     public void actionPerformed(ActionEvent e) {
         if(e.getActionCommand().equalsIgnoreCase("1-Player")){
-            new PlaySound("../resources/sounds/option.wav").start();
+            new PlaySound("/checkers/resources/sounds/option.wav").start();
             col.setEnabled(true);
             col.setVisible(true);
             diff.setEnabled(true);
@@ -310,7 +310,7 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
             randomed.setVisible(true);
         }
         if(e.getActionCommand().equalsIgnoreCase("2-Player")){
-            new PlaySound("../resources/sounds/option.wav").start();
+            new PlaySound("/checkers/resources/sounds/option.wav").start();
             col.setEnabled(false);
             col.setVisible(false);
             diff.setEnabled(false);
@@ -331,37 +331,37 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
             defaultOpt.setSelected(true);
         }
         if(e.getActionCommand().equalsIgnoreCase("red")){
-            new PlaySound("../resources/sounds/option.wav").start();
+            new PlaySound("/checkers/resources/sounds/option.wav").start();
         }
         if(e.getActionCommand().equalsIgnoreCase("yellow")){
-            new PlaySound("../resources/sounds/option.wav").start();
+            new PlaySound("/checkers/resources/sounds/option.wav").start();
         }
         if(e.getActionCommand().equalsIgnoreCase("New Game")){
-            new PlaySound("../resources/sounds/button.wav").start();
+            new PlaySound("/checkers/resources/sounds/button.wav").start();
             newGame();
         }
         if(e.getActionCommand().equalsIgnoreCase("Default")){
-        	new PlaySound("../resources/sounds/option.wav");
+        	new PlaySound("/checkers/resources/sounds/option.wav");
         }
         if(e.getActionCommand().equalsIgnoreCase("Random")){
-        	new PlaySound("../resources/sounds/option.wav");
+        	new PlaySound("/checkers/resources/sounds/option.wav");
         }
         if(e.getActionCommand().equalsIgnoreCase("Undo") && undoCount>3){
-            new PlaySound("../resources/sounds/button.wav").start();
+            new PlaySound("/checkers/resources/sounds/button.wav").start();
             undo();
         }
         if(e.getActionCommand().equalsIgnoreCase("kings!")){
         	kingAll();
         }
         if(e.getSource()==hlpB){
-            new PlaySound("../resources/sounds/button.wav").start();
+            new PlaySound("/checkers/resources/sounds/button.wav").start();
             hp.setVisible(true);
         }
         if(e.getSource()==snB){
             if(silent){
                 snB.setIcon(snp);
                 silent=false;
-                new PlaySound("../resources/sounds/button.wav").start();
+                new PlaySound("/checkers/resources/sounds/button.wav").start();
             }
             else{
                 snB.setIcon(mup);
@@ -582,7 +582,7 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
                 tempPreviousCP = CheckerMove.previousTile;
         		moveRed = 1;
                 if(loser == empty){
-                    new PlaySound("../resources/sounds/comPlay.wav").start();
+                    new PlaySound("/checkers/resources/sounds/comPlay.wav").start();
                     play();
                 }
                 this.toMove = yellowNormal;
@@ -611,7 +611,7 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
                 tempPreviousCP = CheckerMove.previousTile;
                 moveYellow = 1;
                 if(loser == empty){
-                    new PlaySound("../resources/sounds/comPlay.wav").start();
+                    new PlaySound("/checkers/resources/sounds/comPlay.wav").start();
                     play();
                 }
 
@@ -684,7 +684,7 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
                 g.fillRect(50 * square[0], 50 * square[1], 50, 50);                 
                 drawCheckers();
                 gameEnd = false;
-                new PlaySound("../resources/sounds/clickChecker.wav").start();
+                new PlaySound("/checkers/resources/sounds/clickChecker.wav").start();
             }
 		}
 		else if(highlight  && (float)(square[0]+square[1]) / 2 != (square[0]+square[1]) / 2){
