@@ -303,6 +303,12 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
             c2.setVisible(true);
             level.setEnabled(true);
             level.setVisible(true);
+            rndm.setEnabled(true);
+            defaultOpt.setEnabled(true);
+            randomed.setEnabled(true);
+            rndm.setVisible(true);
+            defaultOpt.setVisible(true);
+            randomed.setVisible(true);
         }
         if(e.getActionCommand().equalsIgnoreCase("2-Player")){
             new PlaySound("../resources/sounds/option.wav").start();
@@ -317,6 +323,13 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
             level.setEnabled(false);
             level.setVisible(false);
             c2.setSelected(true);
+            rndm.setEnabled(false);
+            defaultOpt.setEnabled(false);
+            randomed.setEnabled(false);
+            rndm.setVisible(false);
+            defaultOpt.setVisible(false);
+            randomed.setVisible(false);
+            defaultOpt.setSelected(true);
         }
         if(e.getActionCommand().equalsIgnoreCase("red")){
             new PlaySound("../resources/sounds/option.wav").start();
@@ -330,7 +343,6 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
         }
         if(e.getActionCommand().equalsIgnoreCase("Default")){
         	new PlaySound("../resources/sounds/option.wav");
-        	System.out.println("True");
         }
         if(e.getActionCommand().equalsIgnoreCase("Random")){
         	new PlaySound("../resources/sounds/option.wav");
@@ -389,7 +401,7 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
         selectedColor = c1.isSelected() ? "red" : "yellow";
         selectedMode = p1.isSelected()?1:2;
         difficulty = level.getSelectedIndex();
-        isRandom = defaultOpt.isSelected()?true:false;
+        isRandom = defaultOpt.isSelected();
 
         unB.setEnabled(false);
 
@@ -421,46 +433,64 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
 			}
 		}
         
-        if(isRandom == false){
-            int random = (Math.random() <= 0.5) ? 1:2;
-
-            for(int i = 0; i < 8; i++){
-                System.arraycopy(board[i], 0, preBoard1[i], 0, 8); //for undo
-                System.arraycopy(preBoard1[i], 0, preBoard2[i], 0, 8);
-                System.arraycopy(preBoard2[i], 0, preBoard3[i], 0, 8);
-                preToMove3 = preToMove2 = preToMove1 = toMove;
+        for(int i = 0; i < 8; i++){
+            System.arraycopy(board[i], 0, preBoard1[i], 0, 8); //for undo
+            System.arraycopy(preBoard1[i], 0, preBoard2[i], 0, 8);
+            System.arraycopy(preBoard2[i], 0, preBoard3[i], 0, 8);
+            preToMove3 = preToMove2 = preToMove1 = toMove;
+        }
+        
+        //Generates a random integer value, 1 or 2 to determine who goes first
+        //Due to the nature of how red pieces move, player will be able to determine
+        //if red piece has moved by highlighted previous square
+        
+        if(selectedMode == 1){
+            if(isRandom == true){
+                if (selectedMode == 1 && selectedColor.equalsIgnoreCase("yellow")){
+                    this.toMove = redNormal;
+                    play();
+        		}
+        		else if (selectedMode == 1 && selectedColor.equalsIgnoreCase("red")){
+                   this.toMove = redNormal;
+                    play();
+        		}
+                
+            }else{
+                int random = (Math.random() <= 0.5) ? 1:2;
+                
+                if (selectedMode == 1 && selectedColor.equalsIgnoreCase("yellow") && random == 2){
+                	new PlayerPopUp("Red",this.getLocationOnScreen());
+                    this.toMove = yellowNormal;
+                    play();
+        		}else if (selectedMode == 1 && selectedColor.equalsIgnoreCase("yellow") && random == 1){
+                	new PlayerPopUp("Yellow",this.getLocationOnScreen());
+                    this.toMove = redNormal;
+                    play();
+        		}
+        		else if (selectedMode == 1 && selectedColor.equalsIgnoreCase("red") && random == 1){
+                	new PlayerPopUp("Yellow",this.getLocationOnScreen());
+                   this.toMove = redNormal;
+                    play();
+        		}
+        		else if (selectedMode == 1 && selectedColor.equalsIgnoreCase("red") && random == 2){
+                	new PlayerPopUp("Red",this.getLocationOnScreen());
+                   this.toMove = yellowNormal;
+                    play();
+        		}
             }
-
-            if (selectedMode == 1 && selectedColor.equalsIgnoreCase("yellow") && random == 2){
-                this.toMove = yellowNormal;
-                play();
-    		}
-    		else if (selectedMode == 1 && selectedColor.equalsIgnoreCase("red") && random == 1){
-               this.toMove = redNormal;
-                play();
-    		}
-        	
         }else{
-            for(int i = 0; i < 8; i++){
-                System.arraycopy(board[i], 0, preBoard1[i], 0, 8); //for undo
-                System.arraycopy(preBoard1[i], 0, preBoard2[i], 0, 8);
-                System.arraycopy(preBoard2[i], 0, preBoard3[i], 0, 8);
-                preToMove3 = preToMove2 = preToMove1 = toMove;
-            }
-
-            if (selectedMode == 1 && selectedColor.equalsIgnoreCase("yellow")){
-                this.toMove = yellowNormal;
+        	toMove = yellowNormal;
+            if (selectedMode == 2 && selectedColor.equalsIgnoreCase("yellow")){
+                this.toMove = redNormal;
                 play();
     		}
-    		else if (selectedMode == 1 && selectedColor.equalsIgnoreCase("red")){
+    		else if (selectedMode == 2 && selectedColor.equalsIgnoreCase("red")){
                this.toMove = redNormal;
                 play();
     		}
         }
 
-        //Generates a random integer value, 1 or 2 to determine who goes first
-        //Due to the nature of how red pieces move, player will be able to determine
-        //if red piece has moved by highlighted previous square
+
         update();
         drawCheckers();
         showStatus();
