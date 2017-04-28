@@ -47,6 +47,7 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
     JButton unB = new JButton("Undo");
     JButton hlpB=new JButton(hlp);
     JButton snB=new JButton(snp);
+    JButton allKing = new JButton("Kings!");
 
     ButtonGroup players = new ButtonGroup();
     JRadioButton p1 = new JRadioButton("1-Player", true);
@@ -126,7 +127,7 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
         snB.setFocusPainted(false);
 
         diff.setFont(new Font("SansSerif", Font.PLAIN, 11));
-        col.setFont(new Font("SansSerif", Font.PLAIN, 11));
+        col.setFont(new Font("SansSerif", Font.BOLD, 11));
         mode.setFont(new Font("SansSerif", Font.PLAIN, 11));
         c1.setFont(new Font("SansSerif", Font.PLAIN, 11));
         c2.setFont(new Font("SansSerif", Font.PLAIN, 11));
@@ -136,8 +137,17 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
         unB.setFont(new Font("SansSerif", Font.BOLD, 11));
         hlpB.setFont(new Font("SansSerif", Font.PLAIN, 11));
         snB.setFont(new Font("SansSerif", Font.PLAIN, 11));
+        allKing.setFont(new Font("SansSerif", Font.BOLD, 11));
         msg.setFont(new Font("SansSerif", Font.BOLD, 12)); 
-
+        
+        snB.setBackground(Color.blue);
+        hlpB.setBackground(Color.blue);
+        nwB.setBackground(Color.green);
+        unB.setBackground(Color.yellow);
+        unB.setForeground(Color.red);
+        allKing.setBackground(Color.magenta);
+        allKing.setEnabled(false);
+        
         nwB.setCursor(new Cursor(Cursor.HAND_CURSOR));
         unB.setCursor(new Cursor(Cursor.HAND_CURSOR));
         hlpB.setCursor(new Cursor(Cursor.HAND_CURSOR));
@@ -146,10 +156,13 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
         unB.addActionListener(this);
         hlpB.addActionListener(this);
         snB.addActionListener(this);
+        allKing.addActionListener(this);
         nwB.setBounds(405, 55, 95, 25);//297
         this.add(nwB);
         unB.setBounds(405, 85, 95, 25);
         this.add(unB);
+        allKing.setBounds(405, 115, 95, 25);
+        this.add(allKing);
         hlpB.setBounds(415, 10, 25, 25);
         this.add(hlpB);
         snB.setBounds(460, 10, 25, 25);
@@ -169,11 +182,14 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
         this.add(p2);
 
         col.setBounds(420, 200, 80, 25);
+        col.setForeground(Color.green);
         this.add(col);
         c1.addActionListener(this);
         c2.addActionListener(this);
         c1.setCursor(new Cursor(Cursor.HAND_CURSOR));
         c2.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        c1.setBackground(Color.red);
+        c2.setBackground(Color.yellow);
         colors.add(c1);
         colors.add(c2);
         c1.setBounds(415, 258, 80, 25);
@@ -187,11 +203,11 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
         level.addItem("Moderate");
         level.addItem("Difficult");
         level.setSelectedIndex(0);
-        level.setBounds(415, 160, 80, 25);
+        level.setBounds(415, 170, 80, 25);
         this.add(level);
 
         diff.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        diff.setBounds(415, 130, 100, 25);
+        diff.setBounds(415, 140, 100, 25);
         this.add(diff);
 
         this.addMouseListener(this);
@@ -292,6 +308,9 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
             new PlaySound("../resources/sounds/button.wav").start();
             undo();
         }
+        if(e.getActionCommand().equalsIgnoreCase("kings!")){
+        	kingAll();
+        }
         if(e.getSource()==hlpB){
             new PlaySound("../resources/sounds/button.wav").start();
             hp.setVisible(true);
@@ -309,10 +328,29 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
         }
     }
 
+    /**
+     * Go through the board and king all remaining pieces 
+     */
+    public void kingAll(){
+    	System.out.println("KING BUTTON PRESSED");
+    	for(int i = 0; i < 8; i++){
+            for(int j = 0; j < 8; j++){
+            	if(board[i][j] == redNormal){
+            		board[i][j] = redKing;
+            	}
+            	else if(board[i][j] == yellowNormal){
+            		board[i][j] = yellowKing;
+            	}
+            }
+    	}
+    	drawCheckers();
+    }
+    
     public void newGame(){    //creates a new game
     	moveYellow = 0;
     	moveRed = 0;
-
+    	allKing.setEnabled(true);
+    	
         //Yellow takes the first move in both modes
         //If someone wants to move secondly, red has to be selected
         //Yellow is always at the bottom of the board
@@ -643,7 +681,7 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
         		msg.setText("                                                Red move");
         	}
             if(selectedMode != 1){
-            	new HaveToJump("Red", this.getLocationOnScreen());
+            	//new HaveToJump("Red", this.getLocationOnScreen());
             }
         }
         else{
