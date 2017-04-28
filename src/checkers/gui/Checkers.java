@@ -51,7 +51,11 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
     ButtonGroup players = new ButtonGroup();
     JRadioButton p1 = new JRadioButton("1-Player", true);
     JRadioButton p2 = new JRadioButton("2-Player", false);
-
+    
+    ButtonGroup randomize = new ButtonGroup();
+    JRadioButton defaultOpt = new JRadioButton("Default", true);
+    JRadioButton randomed = new JRadioButton("Random",false);
+    
     ButtonGroup colors = new ButtonGroup();
     JRadioButton c1 = new JRadioButton("Red", false);
     JRadioButton c2 = new JRadioButton("Yellow", true);
@@ -61,6 +65,7 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
     JLabel mode = new JLabel("Mode");
     JLabel col = new JLabel("Color");
     JLabel diff = new JLabel("Difficulty Level");
+    JLabel rndm = new JLabel("Random");
     JLabel rp = new JLabel();
     JLabel rpt = new JLabel("Regular Pieces");
     JLabel bp = new JLabel();
@@ -74,6 +79,7 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
     int selectedMode;
     int difficulty;
     int previousTileYellow, previousTileRed, tempPrevious, tempPreviousCP, moveYellow, moveRed;
+    boolean isRandom;
 
     public static final int redNormal = 1;
 	public static final int yellowNormal = 2;
@@ -122,6 +128,8 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
         c2.setFocusPainted(false);
         p1.setFocusPainted(false);
         p2.setFocusPainted(false);
+        defaultOpt.setFocusPainted(false);
+        randomed.setFocusPainted(false);
         hlpB.setFocusPainted(false);
         snB.setFocusPainted(false);
 
@@ -132,6 +140,9 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
         c2.setFont(new Font("SansSerif", Font.PLAIN, 11));
         p1.setFont(new Font("SansSerif", Font.PLAIN, 11));
         p2.setFont(new Font("SansSerif", Font.PLAIN, 11));
+        rndm.setFont(new Font("SansSerif", Font.PLAIN, 11));
+        defaultOpt.setFont(new Font("SansSerif", Font.PLAIN,11));
+        randomed.setFont(new Font("SansSerif", Font.PLAIN, 11));
         nwB.setFont(new Font("SansSerif", Font.BOLD, 11));
         unB.setFont(new Font("SansSerif", Font.BOLD, 11));
         hlpB.setFont(new Font("SansSerif", Font.PLAIN, 11));
@@ -155,7 +166,7 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
         snB.setBounds(460, 10, 25, 25);
         this.add(snB);
 
-        mode.setBounds(420, 310, 80, 25);
+        mode.setBounds(420, 280, 80, 25);
         this.add(mode);
         p1.addActionListener(this);
         p2.addActionListener(this);
@@ -163,11 +174,24 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
         p2.setCursor(new Cursor(Cursor.HAND_CURSOR));
         players.add(p1);
         players.add(p2);
-        p1.setBounds(415, 340, 80, 25);
-        p2.setBounds(415, 368, 80, 25);
+        p1.setBounds(415, 300, 80, 25);
+        p2.setBounds(415, 328, 80, 25);
         this.add(p1);
         this.add(p2);
-
+        
+        rndm.setBounds(420, 360, 80, 25);
+        this.add(rndm);
+        defaultOpt.addActionListener(this);
+        randomed.addActionListener(this);
+        defaultOpt.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        randomed.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        randomize.add(defaultOpt);
+        randomize.add(randomed);
+        defaultOpt.setBounds(415,380,80,25);
+        randomed.setBounds(415,400,80,25);
+        this.add(defaultOpt);
+        this.add(randomed);
+        
         col.setBounds(420, 200, 80, 25);
         this.add(col);
         c1.addActionListener(this);
@@ -176,8 +200,8 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
         c2.setCursor(new Cursor(Cursor.HAND_CURSOR));
         colors.add(c1);
         colors.add(c2);
-        c1.setBounds(415, 258, 80, 25);
-        c2.setBounds(415, 230, 80, 25);
+        c1.setBounds(415, 248, 80, 25);
+        c2.setBounds(415, 220, 80, 25);
         this.add(c1);
         this.add(c2);
 
@@ -288,6 +312,13 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
             new PlaySound("../resources/sounds/button.wav").start();
             newGame();
         }
+        if(e.getActionCommand().equalsIgnoreCase("Default")){
+        	new PlaySound("../resources/sounds/option.wav");
+        	System.out.println("True");
+        }
+        if(e.getActionCommand().equalsIgnoreCase("Random")){
+        	new PlaySound("../resources/sounds/option.wav");
+        }
         if(e.getActionCommand().equalsIgnoreCase("Undo") && undoCount>3){
             new PlaySound("../resources/sounds/button.wav").start();
             undo();
@@ -320,6 +351,7 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
         selectedColor = c1.isSelected() ? "red" : "yellow";
         selectedMode = p1.isSelected()?1:2;
         difficulty = level.getSelectedIndex();
+        isRandom = defaultOpt.isSelected()?true:false;
 
         unB.setEnabled(false);
 
@@ -350,28 +382,47 @@ public class Checkers extends JPanel implements ActionListener, ItemListener, Mo
 			    }
 			}
 		}
+        
+        if(isRandom == false){
+            int random = (Math.random() <= 0.5) ? 1:2;
+
+            for(int i = 0; i < 8; i++){
+                System.arraycopy(board[i], 0, preBoard1[i], 0, 8); //for undo
+                System.arraycopy(preBoard1[i], 0, preBoard2[i], 0, 8);
+                System.arraycopy(preBoard2[i], 0, preBoard3[i], 0, 8);
+                preToMove3 = preToMove2 = preToMove1 = toMove;
+            }
+
+            if (selectedMode == 1 && selectedColor.equalsIgnoreCase("yellow") && random == 2){
+                this.toMove = yellowNormal;
+                play();
+    		}
+    		else if (selectedMode == 1 && selectedColor.equalsIgnoreCase("red") && random == 1){
+               this.toMove = redNormal;
+                play();
+    		}
+        	
+        }else{
+            for(int i = 0; i < 8; i++){
+                System.arraycopy(board[i], 0, preBoard1[i], 0, 8); //for undo
+                System.arraycopy(preBoard1[i], 0, preBoard2[i], 0, 8);
+                System.arraycopy(preBoard2[i], 0, preBoard3[i], 0, 8);
+                preToMove3 = preToMove2 = preToMove1 = toMove;
+            }
+
+            if (selectedMode == 1 && selectedColor.equalsIgnoreCase("yellow")){
+                this.toMove = yellowNormal;
+                play();
+    		}
+    		else if (selectedMode == 1 && selectedColor.equalsIgnoreCase("red")){
+               this.toMove = redNormal;
+                play();
+    		}
+        }
 
         //Generates a random integer value, 1 or 2 to determine who goes first
         //Due to the nature of how red pieces move, player will be able to determine
         //if red piece has moved by highlighted previous square
-        int random = (Math.random() <= 0.5) ? 1:2;
-
-        for(int i = 0; i < 8; i++){
-            System.arraycopy(board[i], 0, preBoard1[i], 0, 8); //for undo
-            System.arraycopy(preBoard1[i], 0, preBoard2[i], 0, 8);
-            System.arraycopy(preBoard2[i], 0, preBoard3[i], 0, 8);
-            preToMove3 = preToMove2 = preToMove1 = toMove;
-        }
-
-        if (selectedMode == 1 && selectedColor.equalsIgnoreCase("yellow") && random == 2){
-            this.toMove = yellowNormal;
-            play();
-		}
-		else if (selectedMode == 1 && selectedColor.equalsIgnoreCase("red") && random == 1){
-           this.toMove = redNormal;
-            play();
-		}
-
         update();
         drawCheckers();
         showStatus();
